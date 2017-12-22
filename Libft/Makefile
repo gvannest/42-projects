@@ -6,7 +6,7 @@
 #    By: gvannest <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/09 13:22:43 by gvannest          #+#    #+#              #
-#    Updated: 2017/12/18 11:23:17 by gvannest         ###   ########.fr        #
+#    Updated: 2017/12/19 15:09:56 by gvannest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS = ft_putnbr.c ft_putchar.c ft_strlen.c ft_putstr.c ft_strdup.c ft_strcpy.c 
 	   ft_strtrim.c ft_strsplit.c ft_itoa.c ft_memccpy.c ft_putendl.c ft_putchar_fd.c \
 	   ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c ft_lstdelone.c \
 	   ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_power.c ft_sqrt.c ft_isprime.c \
-	   ft_lstpushback.c ft_lstlen.c ft_nextsqrt.c ft_lstrev.c ft_strndup.c get_next_line.c
+	   ft_lstpushback.c ft_lstlen.c ft_nextsqrt.c ft_lstrev.c ft_strndup.c get_next_line.c \
+	   ft_strrev.c ft_itoabase_u.c ft_itoabase_s.c
 FLAGS = -Wall -Wextra -Werror
 OBJ = $(SRCS:.c=.o)
 

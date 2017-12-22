@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 13:54:31 by gvannest          #+#    #+#             */
-/*   Updated: 2017/12/11 14:28:22 by gvannest         ###   ########.fr       */
+/*   Updated: 2017/12/19 15:10:26 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void				ft_lstpushback(t_list **list, t_list *new);
 int					ft_lstlen(t_list *list);
 int					ft_nextsqrt(int n);
 void				ft_lstrev(t_list **alst);
-
+char				*ft_strrev(char	*str);
+char				*ft_itoabase_u(uintmax_t value, int base);
+char				*ft_itoabase_s(intmax_t value, int base);
 
 #endif
