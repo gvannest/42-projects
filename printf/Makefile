@@ -6,7 +6,7 @@
 #    By: gvannest <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/21 09:39:09 by gvannest          #+#    #+#              #
-#    Updated: 2017/12/22 14:21:15 by gvannest         ###   ########.fr        #
+#    Updated: 2018/01/11 11:12:46 by gvannest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@
 NAME = printf.out
 
 SRC_PATH = src
-SRC_NAME = ft_printf.c printf_main.c ft_lecture.c 
-
+SRC_NAME = ft_printf.c printf_main.c ft_buffer.c ft_control_flags.c \
+		   ft_clean_flags.c ft_init_struct.c ft_free_and_error.c
 OBJ_PATH = obj
 OBJ_NAME = $(SRC_NAME:.c=.o)
  

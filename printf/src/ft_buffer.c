@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lecture.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/18 11:38:45 by gvannest          #+#    #+#             */
-/*   Updated: 2018/01/11 15:48:39 by gvannest         ###   ########.fr       */
+/*   Created: 2017/12/22 13:13:36 by gvannest          #+#    #+#             */
+/*   Updated: 2018/01/11 10:02:40 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *format, ...)
+static void	ft_buf_test(char *buf, int i)
 {
-	char	buf[BUF_SIZE];
-	t_lst	p;
-	va_list	ap;
-
-	ft_init_struct(&p);
-	ft_bzero(buf, BUF_SIZE);
-	va_start(ap, format);
-	ft_buffer(format, buf, &p);
-	if (!format[p.index])
-		return (p.index);
-	if (ft_control_flags(format, &p) < 0 || ft_clean_flags(&p) < 0)
+	if ((i % BUF_SIZE) == 0)
 	{
-		ft_error(&p);
-		return (-1);
-	}
-	p.param = va_arg(ap, void*);
-	va_end(ap);
-	if (buf[0] != '\0')
 		ft_putstr(buf);
-	return (0);
+		ft_bzero(buf, BUF_SIZE);
+	}
 }
 
-	
+void		ft_buffer(const char *str, char *buf, t_lst *p)
+{
+	while (str[INDEX] != '%' && str[INDEX])
+	{
+		ft_buf_test(buf, INDEX_BUF);
+		buf[INDEX_BUF % BUF_SIZE] = str[INDEX];
+		INDEX++;
+		INDEX_BUF++;
+	}
+	return ;
+}

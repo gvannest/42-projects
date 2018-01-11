@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 13:54:31 by gvannest          #+#    #+#             */
-/*   Updated: 2017/12/19 15:10:26 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/01/11 15:41:21 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 
 typedef	struct		s_list
 {

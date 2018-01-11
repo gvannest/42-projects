@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 17:14:08 by gvannest          #+#    #+#             */
-/*   Updated: 2017/12/19 15:52:52 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/01/11 16:01:15 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int		ft_countdigits(intmax_t value, int base)
 	i = 0;
 	if (value == 0)
 		return (1);
-	while (value < 0)
+	while (value)
 	{
 		i++;
 		value = value / base;
@@ -47,26 +47,24 @@ char			*ft_itoabase_s(intmax_t value, int base)
 	int			k;
 	char		*str;
 	intmax_t	l;
+	uintmax_t	n;
 	char		tab[16];
 
-	l = value;
 	ft_strncpy(tab, "0123456789ABCDEF", 17);
-	if (l > 0)
+	if (value == LLONG_MIN)
+	{
+		n = LLONG_MAX;
+		str = ft_itoabase_u(++n, base);
+		return (str);
+	}
+	l = value;
+	if (l < 0)
 		l = -l;
 	k = ft_countdigits(l, base);
+	if (!(str = ft_strnew(k + 1)))
+		return (0);
 	if (value < 0 && base == 10)
-	{
-		if (!(str = ft_strnew(k + 1)))
-			return (0);
-		str[k + 1] = '\0';
 		str[k] = '-';
-	}
-	else
-	{
-		if (!(str = ft_strnew(k)))
-			return (0);
-		str[k] = '\0';
-	}
 	ft_fillitoa(str, l, tab, base);
 	return (ft_strrev(str));
 }
