@@ -6,7 +6,7 @@
 #    By: gvannest <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/09 13:22:43 by gvannest          #+#    #+#              #
-#    Updated: 2017/12/19 15:09:56 by gvannest         ###   ########.fr        #
+#    Updated: 2017/12/19 16:56:09 by gvannest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,11 @@ OBJ = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	ar rc $@ $^
+	ranlib $@
 
 %.o: %.c
-	gcc $(FLAGS) -c $(SRCS)
+	gcc $(FLAGS) -c $<
 
 clean:
 	rm -rf $(OBJ)

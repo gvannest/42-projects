@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 13:54:31 by gvannest          #+#    #+#             */
-/*   Updated: 2017/12/19 15:10:26 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/01/16 12:07:20 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 
 typedef	struct		s_list
 {
@@ -92,7 +93,7 @@ int					ft_lstlen(t_list *list);
 int					ft_nextsqrt(int n);
 void				ft_lstrev(t_list **alst);
 char				*ft_strrev(char	*str);
-char				*ft_itoabase_u(uintmax_t value, int base);
-char				*ft_itoabase_s(intmax_t value, int base);
+char				*ft_itoabase_u(uintmax_t value, char *base);
+char				*ft_itoabase_s(intmax_t value, char *base);
 
 #endif

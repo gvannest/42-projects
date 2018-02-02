@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 12:56:51 by gvannest          #+#    #+#             */
-/*   Updated: 2018/01/15 17:14:52 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/01/15 17:26:11 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ void	ft_length(t_lst *p)
 	else
 	{
 		ft_base(p);
-	if (TYPE == 'd' || TYPE == 'D' || TYPE == 'i')
-		LEN_PARAM = ft_strlen(ft_itoabase_u(*(intmax_t*)PARAM, BASE));
-	else	
-		LEN_PARAM = ft_strlen(ft_itoabase_u(*(uintmax_t*)PARAM, BASE));
+		ft_putnbr(BASE);
+	//if (TYPE == 'd' || TYPE == 'D' || TYPE == 'i')
+		//LEN_PARAM = ft_strlen(ft_itoabase_u(*(intmax_t*)PARAM, BASE));
+	//else	
+		//LEN_PARAM = ft_strlen(ft_itoabase_u(*(uintmax_t*)PARAM, BASE));
 	}
 }
