@@ -6,28 +6,26 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 17:14:08 by gvannest          #+#    #+#             */
-/*   Updated: 2018/01/11 16:01:15 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/01/31 15:58:17 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_countdigits(intmax_t value, int base)
+static int		ft_countdigits(intmax_t value, char *base)
 {
 	int i;
 
 	i = 0;
-	if (value == 0)
-		return (1);
 	while (value)
 	{
 		i++;
-		value = value / base;
+		value = value / ft_strlen(base);
 	}
 	return (i);
 }
 
-static void		ft_fillitoa(char *str, intmax_t l, char *tab, int base)
+static void		ft_fillitoa(char *str, intmax_t l, char *base)
 {
 	int i;
 	int k;
@@ -36,21 +34,21 @@ static void		ft_fillitoa(char *str, intmax_t l, char *tab, int base)
 	k = ft_countdigits(l, base);
 	while (i < k)
 	{
-		(str)[i] = tab[(-l) % base];
-		l = l / base;
+		(str)[i] = base[(l) % ft_strlen(base)];
+		l = l / ft_strlen(base);
 		i++;
 	}
 }
 
-char			*ft_itoabase_s(intmax_t value, int base)
+char			*ft_itoabase_s(intmax_t value, char *base)
 {
 	int			k;
 	char		*str;
 	intmax_t	l;
 	uintmax_t	n;
-	char		tab[16];
 
-	ft_strncpy(tab, "0123456789ABCDEF", 17);
+	if (value == 0)
+		return ("0");
 	if (value == LLONG_MIN)
 	{
 		n = LLONG_MAX;
@@ -63,8 +61,8 @@ char			*ft_itoabase_s(intmax_t value, int base)
 	k = ft_countdigits(l, base);
 	if (!(str = ft_strnew(k + 1)))
 		return (0);
-	if (value < 0 && base == 10)
+	if (value < 0 && ft_strlen(base) == 10)
 		str[k] = '-';
-	ft_fillitoa(str, l, tab, base);
+	ft_fillitoa(str, l, base);
 	return (ft_strrev(str));
 }

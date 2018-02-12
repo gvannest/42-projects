@@ -6,7 +6,7 @@
 #    By: gvannest <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/09 13:22:43 by gvannest          #+#    #+#              #
-#    Updated: 2017/12/19 16:56:09 by gvannest         ###   ########.fr        #
+#    Updated: 2018/01/31 11:26:37 by gvannest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS = ft_putnbr.c ft_putchar.c ft_strlen.c ft_putstr.c ft_strdup.c ft_strcpy.c 
 	   ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_power.c ft_sqrt.c ft_isprime.c \
 	   ft_lstpushback.c ft_lstlen.c ft_nextsqrt.c ft_lstrev.c ft_strndup.c get_next_line.c \
 	   ft_strrev.c ft_itoabase_u.c ft_itoabase_s.c
+
 FLAGS = -Wall -Wextra -Werror
 OBJ = $(SRCS:.c=.o)
 
@@ -33,8 +34,8 @@ $(NAME): $(OBJ)
 	ar rc $@ $^
 	ranlib $@
 
-%.o: %.c
-	gcc $(FLAGS) -c $<
+%.o: %.c | $(OBJ_PATH)
+	gcc $(FLAGS) -o $@ -c $<
 
 clean:
 	rm -rf $(OBJ)

@@ -6,29 +6,19 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 13:13:36 by gvannest          #+#    #+#             */
-/*   Updated: 2018/01/11 10:02:40 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/02/01 15:42:42 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_buf_test(char *buf, int i)
+void	ft_buffer(const char c, t_lst *p)
 {
-	if ((i % BUF_SIZE) == 0)
+	if ((INDEX_BUF != 0) && (INDEX_BUF % BUF_SIZE == 0))
 	{
-		ft_putstr(buf);
-		ft_bzero(buf, BUF_SIZE);
+		write(1, BUF, BUF_SIZE);
+		ft_bzero(BUF, BUF_SIZE);
 	}
-}
-
-void		ft_buffer(const char *str, char *buf, t_lst *p)
-{
-	while (str[INDEX] != '%' && str[INDEX])
-	{
-		ft_buf_test(buf, INDEX_BUF);
-		buf[INDEX_BUF % BUF_SIZE] = str[INDEX];
-		INDEX++;
-		INDEX_BUF++;
-	}
-	return ;
+	BUF[INDEX_BUF % BUF_SIZE] = c;
+	INDEX_BUF++;
 }
