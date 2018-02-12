@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 11:38:45 by gvannest          #+#    #+#             */
-/*   Updated: 2018/02/12 15:06:50 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/02/12 17:12:09 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ int			ft_printf(const char *format, ...)
 		if (ft_fill_buffer(format, &p, ap) < 0)
 		{
 			if (m % BUF_SIZE != 0)
-				write(1, p.buf, m);
+				write(1, p.buf, m % BUF_SIZE);
 			return (-1);
 		}
 	}
 	va_end(ap);
 	if (p.index_buf % BUF_SIZE != 0)
-		write(1, p.buf, p.index_buf);
+		write(1, p.buf, p.index_buf % BUF_SIZE);
 	return (p.index_buf);
 }

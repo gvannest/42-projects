@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:27:41 by gvannest          #+#    #+#             */
-/*   Updated: 2018/02/10 15:02:02 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/02/12 17:13:28 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ int				ft_type_s(t_lst *p, va_list ap)
 	if (!(FLAGS & MINUS))
 		ft_width(p, len);
 	if (PRECISION_ON)
-		while (*(s + i) && i < PRECISION)
-			ft_buffer(*(s + i++), p);
+		while (s[i] && i < PRECISION)
+			ft_buffer(s[i++], p);
 	else
-		while (*(s + i))
-			ft_buffer(*(s + i++), p);
+		while (s[i])
+			ft_buffer(s[i++], p);
 	if (FLAGS & MINUS)
 		ft_width(p, len);
 	return (0);

@@ -6,12 +6,13 @@
 #    By: gvannest <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/09 13:22:43 by gvannest          #+#    #+#              #
-#    Updated: 2018/01/31 11:26:37 by gvannest         ###   ########.fr        #
+#    Updated: 2018/02/12 16:50:26 by gvannest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
-MAIN = main.c
+.PHONY : all, clean, fclean, re
+
+NAME = ../libftprintf.a
 SRCS = ft_putnbr.c ft_putchar.c ft_strlen.c ft_putstr.c ft_strdup.c ft_strcpy.c \
 	   ft_strncpy.c ft_strcat.c ft_strncat.c ft_strlcat.c ft_strchr.c \
 	   ft_strrchr.c ft_strstr.c ft_strnstr.c ft_strcmp.c ft_strncmp.c ft_atoi.c \
@@ -22,7 +23,7 @@ SRCS = ft_putnbr.c ft_putchar.c ft_strlen.c ft_putstr.c ft_strdup.c ft_strcpy.c 
 	   ft_strtrim.c ft_strsplit.c ft_itoa.c ft_memccpy.c ft_putendl.c ft_putchar_fd.c \
 	   ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c ft_lstdelone.c \
 	   ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_power.c ft_sqrt.c ft_isprime.c \
-	   ft_lstpushback.c ft_lstlen.c ft_nextsqrt.c ft_lstrev.c ft_strndup.c get_next_line.c \
+	   ft_lstpushback.c ft_lstlen.c ft_nextsqrt.c ft_lstrev.c ft_strndup.c \
 	   ft_strrev.c ft_itoabase_u.c ft_itoabase_s.c
 
 FLAGS = -Wall -Wextra -Werror
@@ -34,7 +35,7 @@ $(NAME): $(OBJ)
 	ar rc $@ $^
 	ranlib $@
 
-%.o: %.c | $(OBJ_PATH)
+%.o: %.c
 	gcc $(FLAGS) -o $@ -c $<
 
 clean:
