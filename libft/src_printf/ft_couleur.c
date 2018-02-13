@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabptr.h                                        :+:      :+:    :+:   */
+/*   ft_couleur.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/29 11:13:31 by gvannest          #+#    #+#             */
-/*   Updated: 2018/02/12 15:03:21 by gvannest         ###   ########.fr       */
+/*   Created: 2018/02/12 13:28:08 by gvannest          #+#    #+#             */
+/*   Updated: 2018/02/13 18:04:35 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_COULEUR_H
-# define FT_COULEUR_H
+#include "ft_printf.h"
 
-# include "ft_printf.h"
-
-typedef struct			s_tabcouleur
-{
-	char				colour_str[10];
-	char				colour_nb[3];
-}						t_tabcouleur;
-
-struct s_tabcouleur		tcolour[] =
+static char		*g_colour[12][2] =
 {
 	{"eoc", "00"},
 	{"highlight", "01"},
@@ -37,4 +28,30 @@ struct s_tabcouleur		tcolour[] =
 	{"white", "37"},
 };
 
-#endif
+void			ft_couleur(t_lst *p, const char *format)
+{
+	int		i;
+	int		k;
+	size_t	m;
+
+	i = 0;
+	k = 0;
+	m = INDEX;
+	while (format[++INDEX] != '}')
+		COULEUR[i++] = format[INDEX];
+	INDEX++;
+	i = 0;
+	while (i < 12 && ft_strcmp(COULEUR, g_colour[i][0]))
+		i++;
+	if (i != 12)
+	{
+		ft_buffer('\033', p);
+		ft_buffer('[', p);
+		while (*(g_colour[i][1] + k))
+			ft_buffer(*(g_colour[i][1] + k++), p);
+		ft_buffer('m', p);
+	}
+	else
+		INDEX = m;
+	(i == 12 ? ft_buffer(format[INDEX++], p) : 1);
+}

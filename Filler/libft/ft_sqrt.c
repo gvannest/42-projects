@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/18 17:49:42 by gvannest          #+#    #+#             */
-/*   Updated: 2018/01/16 12:13:26 by gvannest         ###   ########.fr       */
+/*   Created: 2017/11/23 13:29:35 by gvannest          #+#    #+#             */
+/*   Updated: 2017/11/23 13:33:00 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		main(int argc, char **argv)
+int		ft_sqrt(int n)
 {
-	(void)argc;
-	char *str;
-	str = ft_itoabase_u(ft_atoi(argv[1]), argv[2]);
-	ft_putstr(str);
+	long i;
+
+	i = 1;
+	if (n <= 0)
+		return (0);
+	while (i * i < n)
+		i++;
+	if (i * i == n)
+		return (i);
 	return (0);
 }
-
