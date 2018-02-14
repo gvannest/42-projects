@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:27:41 by gvannest          #+#    #+#             */
-/*   Updated: 2018/02/14 08:35:13 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/02/10 14:55:52 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void		ft_width(t_lst *p, size_t len, intmax_t n)
 	j = (n == 0 && PRECISION_ON && PRECISION == 0 ? WIDTH : WIDTH - len);
 	if (((FLAGS & SPACE) || (FLAGS & PLUS)) && n >= 0)
 		k++;
+	(FLAGS & SPACE && n >= 0 ? ft_buffer(' ', p) : 1);
 	if ((FLAGS & PLUS) && n >= 0 && c == '0')
 		ft_buffer('+', p);
 	if (n < 0)
@@ -65,8 +66,8 @@ int				ft_type_di(t_lst *p, va_list ap)
 	n = ft_cast_nsigned(p, ap);
 	itoa = ft_itoabase_s(n, "0123456789");
 	len = ft_strlen(itoa);
-	(FLAGS & SPACE && n >= 0 ? ft_buffer(' ', p) : 1);
-	(!(FLAGS & MINUS) ? ft_width(p, len, n) : 1);
+	if (!(FLAGS & MINUS))
+		ft_width(p, len, n);
 	if ((n >= 0 && (FLAGS & PLUS) && (!(FLAGS & ZERO) || PRECISION_ON)))
 		ft_buffer('+', p);
 	if (n < 0 && (!(FLAGS & ZERO) || PRECISION_ON))
