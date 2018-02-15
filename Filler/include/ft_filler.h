@@ -6,22 +6,23 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 13:59:26 by gvannest          #+#    #+#             */
-/*   Updated: 2018/02/14 16:36:40 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/02/15 13:29:01 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifdef FT_FILLER_H 
+#ifndef FT_FILLER_H 
 # define FT_FILLER_H
 # include "libft.h"
 
-# define BUF_SIZE_FILLER 2000
+# define PIECE game->piece
 
 typedef struct		s_filler
 {
-	char	*s;
+	char	piece;
 }					t_filler;
 
-
+void	ft_filler(t_filler *game);
+void	ft_display_fd(t_filler *game);
 
 
 

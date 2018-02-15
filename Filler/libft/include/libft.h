@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 13:54:31 by gvannest          #+#    #+#             */
-/*   Updated: 2018/01/16 12:07:20 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/02/15 13:19:10 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+# include "get_next_line.h"
+# include "ft_printf.h"
 
 typedef	struct		s_list
 {

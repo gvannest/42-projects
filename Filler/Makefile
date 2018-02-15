@@ -6,7 +6,7 @@
 #    By: gvannest <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/21 09:39:09 by gvannest          #+#    #+#              #
-#    Updated: 2018/02/13 15:28:35 by gvannest         ###   ########.fr        #
+#    Updated: 2018/02/15 14:06:32 by gvannest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,17 +16,13 @@ NAME = gvannest.filler
 
 VPATH = src
 
-SRC_NAME = ft_printf.c ft_buffer.c ft_control_flags.c \
-		   ft_clean_flags.c ft_cast_arg.c ft_typed.c ft_typeu.c \
-		   ft_types.c ft_typec.c ft_reinit_struct.c ft_typeo.c ft_typex.c \
-		   ft_typep.c ft_typepercent.c ft_type_unicodec.c ft_wcharconv.c \
-		   ft_type_unicodes.c ft_typeb.c ft_couleur.c
+SRC_NAME = main_filler.c ft_filler.c ft_display_fd.c
 
 OBJ_PATH = obj
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
-CPPFLAGS = -I./include
+CPPFLAGS = -Iinclude -Ilibft/include
 CFLAGS = -Wall -Wextra -Werror
 
 LIBFT_PATH = ./libft
@@ -38,10 +34,9 @@ OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT_PATH)/$(OBJ)/$(%.o)
+$(NAME): $(OBJ)
 	make -C $(LIBFT_PATH)
-	ar rc $@ $^
-	ranlib $@
+	$(CC) $^ -o $@ $(LIBFT_PATH)/$(LIBFT)
 
 $(OBJ_PATH)/%.o: %.c | $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
