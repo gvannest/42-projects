@@ -6,7 +6,7 @@
 #    By: gvannest <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/21 09:39:09 by gvannest          #+#    #+#              #
-#    Updated: 2018/02/15 14:06:32 by gvannest         ###   ########.fr        #
+#    Updated: 2018/02/16 16:32:12 by gvannest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ NAME = gvannest.filler
 
 VPATH = src
 
-SRC_NAME = main_filler.c ft_filler.c ft_display_fd.c
+SRC_NAME = main_filler.c ft_display_fd.c \
+		   ft_getinfo.c
 
 OBJ_PATH = obj
 
