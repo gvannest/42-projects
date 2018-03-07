@@ -6,98 +6,91 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 16:15:54 by gvannest          #+#    #+#             */
-/*   Updated: 2018/02/16 17:06:19 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/03/07 16:51:54 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_filler.h"
 
-static int		ft_getboard_updated(t_filler *game, char **line)
+static int			ft_getboard(t_filler *game, char **line)
 {
-	char	*ptr;
-	size_t	i;
+	char			*ptr;
+	int				k;
 
 	ptr = 0;
-	i = 0;
-	while (!ft_isdigit(*line[0]))
-		get_next_line(0, line);
-	while (BOARD[i])
+	k = 0;
+	if (BOARDL == 0 && ft_strstr(*line, "Plateau"))
 	{
-		if (ft_strcmp(BOARD[i], *line + 4) != 0)
-			BOARD[i] = *line + 4;
-		i++;
-		get_next_line(0, line);
+		ptr = ft_strchr(*line, ' ');
+		BOARDL = ft_atoi(ptr);
+		ptr = ft_strchr(ptr + 1, ' ');
+		BOARDC = ft_atoi(ptr);
+		if (!(BOARD = ft_strnew(BOARDL * BOARDC)))
+			return (-1);
+		if (!(MAP_OP = (double*)malloc(sizeof(double) * (BOARDL * BOARDC))))
+			return (-1);
+		if (!(MAP_ME = (double*)malloc(sizeof(double) * (BOARDL * BOARDC))))
+			return (-1);
+		if (!(MAPOME = (double*)malloc(sizeof(double) * (BOARDL * BOARDC))))
+			return (-1);
+		if (!(MAP_SCORE = (double*)malloc(sizeof(double) * (BOARDL * BOARDC))))
+			return (-1);
+	}
+	if (ft_isdigit(*line[0]))
+		ft_strcat(BOARD, *line + 4);
+	return (0);
+}
+
+static int			ft_getpiece(t_filler *game, char **line)
+{
+	char		*ptr;
+	int			k;
+
+	ptr = 0;
+	k = 0;
+	if (ft_strstr(*line, "Piece"))
+	{
+		ptr = ft_strchr(*line, ' ');
+		PIECE_NBLN = ft_atoi(ptr);
+		ptr = ft_strchr(ptr + 1, ' ');
+		PIECE_NBCOL = ft_atoi(ptr);
+		if (!(PIECE = ft_strnew(PIECE_NBLN * PIECE_NBCOL)))
+			return (-1);
+	}
+	if (*line[0] == '.' || *line[0] == '*')
+	{
+		ft_strcat(PIECE, *line);
+		while (PIECE[k])
+			(PIECE[k] == '*' ? PIECE[k++] = SHAPE_ME : k++);
+		PIECE_LNCOUNT++;
 	}
 	return (0);
 }
 
-static int		ft_getboard_init(t_filler *game, char **line)
+static void			ft_getforme(t_filler *game, char **line)
 {
-	char	*ptr;
-	size_t	i;
-
-	ptr = 0;
-	i = 0;
-	while (!ft_strstr(*line, "Plateau"))
-		get_next_line(0, line);
-	ptr = ft_strchr(*line, ' ');
-	BOARD_NBLN = ft_atoi(ptr);
-	ptr = ft_strchr(ptr + 1, ' ');
-	BOARD_NBCOL = ft_atoi(ptr);
-	while (!ft_isdigit(*line[0]))
-		get_next_line(0, line);
-	if (!(BOARD = (char**)malloc(sizeof(char*) * (BOARD_NBLN + 1))))
-		return (-1);
-	BOARD[BOARD_NBLN] = 0;
-	get_next_line(0, line);
-	while (!ft_strstr(*line, "Piece"))
+	SHAPE_ME = 'X';
+	if (ft_strstr(*line, "gvannest") && ft_strchr(*line, '1'))
 	{
-		BOARD[i++] = ft_strdup(*line + 4);
-		get_next_line(0, line);
+		SHAPE_ME = 'O';
+		SHAPE_OP = 'X';
 	}
-	return (0);
-}
-
-static int		ft_getpiece(t_filler *game, char **line)
-{
-	char	*ptr;
-	int		i;
-
-	ptr = 0;
-	i = 0;
-	while (!ft_strstr(*line, "Piece"))
-		get_next_line(0, line);
-	ptr = ft_strchr(*line, ' ');
-	PIECE_NBLN = ft_atoi(ptr);
-	ptr = ft_strchr(ptr + 1, ' ');
-	PIECE_NBCOL = ft_atoi(ptr);
-	if (!(PIECE = (char**)malloc(sizeof(char*) * (PIECE_NBLN + 1))))
-		return (-1);
-	PIECE[PIECE_NBLN] = 0;
-	while (i < PIECE_NBLN)
-	{
-		get_next_line(0, line);
-		PIECE[i++] = ft_strdup(*line);
-	}
-	return (0);
-}
-
-static void		ft_getforme(t_filler *game, char **line)
-{
-	FORME = 'X';
-	while (!ft_strstr(*line, "$$$"))
-		get_next_line(0, line);
-	if (ft_strstr(*line, "gvannest"))
-		(ft_strchr(*line, '1') ? FORME = 'O' : FORME);
-}
-
-void			ft_getinfo(t_filler *game, char **line)
-{
-	if (FORME == 0)
-		ft_getforme(game, line);
-	if (BOARD_NBLN == 0)
-		ft_getboard_init(game, line);
 	else
-		ft_getboard_updated(game, line);
-	ft_getpiece(game, line);
+		SHAPE_OP = 'O';
+}
+
+int					ft_getinfo(t_filler *game, char **line)
+{
+	if (SHAPE_ME == 0 && ft_strstr(*line, "$$$"))
+		ft_getforme(game, line);
+	if (ft_getboard(game, line) < 0)
+		return (-1);
+	if (ft_getpiece(game, line) < 0)
+		return (-1);
+	if (PIECE_LNCOUNT == PIECE_NBLN && PIECE_NBLN != 0)
+	{
+		ft_strdel(line);
+		return (1);
+	}
+	return (0);
 }

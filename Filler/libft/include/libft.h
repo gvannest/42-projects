@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 13:54:31 by gvannest          #+#    #+#             */
-/*   Updated: 2018/02/15 13:19:10 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/02/27 12:08:09 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list*));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 long				ft_power(int n, int power);
 int					ft_sqrt(int n);
+double				ft_sqrt_heron(double n, int precision);
 int					ft_isprime(int n);
 void				ft_lstpushback(t_list **list, t_list *new);
 int					ft_lstlen(t_list *list);
@@ -97,5 +98,6 @@ void				ft_lstrev(t_list **alst);
 char				*ft_strrev(char	*str);
 char				*ft_itoabase_u(uintmax_t value, char *base);
 char				*ft_itoabase_s(intmax_t value, char *base);
+int					ft_max(int a, int b);
 
 #endif
