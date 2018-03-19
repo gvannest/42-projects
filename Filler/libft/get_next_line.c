@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 19:19:28 by gvannest          #+#    #+#             */
-/*   Updated: 2017/12/13 18:09:37 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/03/13 13:42:33 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,19 @@ static char	*ft_retpositif(char *stkfd, char **line)
 	i = 0;
 	while (stkfd[i] != '\n' && stkfd[i])
 		i++;
-	if (!(*line = ft_strsub(stkfd, 0, i)))
-		return (0);
 	tmp = stkfd;
+	if (!(*line = ft_strsub(stkfd, 0, i)))
+	{
+		ft_strdel(&tmp);
+		return (0);
+	}
 	if (stkfd[i] == '\0')
 		i--;
 	if (!(stkfd = ft_strdup(stkfd + i + 1)))
+	{
+		ft_strdel(&tmp);
 		return (0);
+	}
 	ft_strdel(&tmp);
 	return (stkfd);
 }
