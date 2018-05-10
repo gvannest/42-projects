@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddfirst.c                                   :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 14:13:10 by gvannest          #+#    #+#             */
-/*   Updated: 2018/03/19 16:24:28 by gvannest         ###   ########.fr       */
+/*   Created: 2017/11/14 19:00:38 by gvannest          #+#    #+#             */
+/*   Updated: 2017/11/21 13:29:23 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstpushback(t_list **list, t_list *new)
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	t_list *current;
+	size_t i;
 
-	if (list == 0 || new == 0)
-		return ;
-	if (*list == 0)
-		*list = new;
-	else
+	if (s1 && s2)
 	{
-		current = *list;
-		while (current->next)
-			current = current->next;
-		current->next = new;
-		new->next = NULL;
+		i = 0;
+		while (s1[i] == s2[i] && s1[i] && s2[i] && i < n)
+			i++;
+		if ((s1[i] == '\0' && s2[i] == '\0') || i == n)
+			return (1);
+		return (0);
 	}
+	return (0);
 }

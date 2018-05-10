@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddfirst.c                                   :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 14:13:10 by gvannest          #+#    #+#             */
-/*   Updated: 2018/03/19 16:24:28 by gvannest         ###   ########.fr       */
+/*   Created: 2017/11/23 13:29:35 by gvannest          #+#    #+#             */
+/*   Updated: 2017/11/23 13:33:00 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstpushback(t_list **list, t_list *new)
+int		ft_sqrt(int n)
 {
-	t_list *current;
+	long i;
 
-	if (list == 0 || new == 0)
-		return ;
-	if (*list == 0)
-		*list = new;
-	else
-	{
-		current = *list;
-		while (current->next)
-			current = current->next;
-		current->next = new;
-		new->next = NULL;
-	}
+	i = 1;
+	if (n <= 0)
+		return (0);
+	while (i * i < n)
+		i++;
+	if (i * i == n)
+		return (i);
+	return (0);
 }

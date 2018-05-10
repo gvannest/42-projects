@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddfirst.c                                   :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 14:13:10 by gvannest          #+#    #+#             */
-/*   Updated: 2018/03/19 16:24:28 by gvannest         ###   ########.fr       */
+/*   Created: 2017/11/13 09:23:36 by gvannest          #+#    #+#             */
+/*   Updated: 2017/11/13 09:40:22 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstpushback(t_list **list, t_list *new)
+int		ft_isascii(int c)
 {
-	t_list *current;
-
-	if (list == 0 || new == 0)
-		return ;
-	if (*list == 0)
-		*list = new;
-	else
-	{
-		current = *list;
-		while (current->next)
-			current = current->next;
-		current->next = new;
-		new->next = NULL;
-	}
+	if (c >= 0 && c <= 127)
+		return (1);
+	return (0);
 }

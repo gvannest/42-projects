@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddfirst.c                                   :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 14:13:10 by gvannest          #+#    #+#             */
-/*   Updated: 2018/03/19 16:24:28 by gvannest         ###   ########.fr       */
+/*   Created: 2017/11/09 14:15:53 by gvannest          #+#    #+#             */
+/*   Updated: 2017/11/09 14:33:57 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstpushback(t_list **list, t_list *new)
+char	*ft_strdup(const char *s1)
 {
-	t_list *current;
+	char	*cpy;
+	size_t	i;
 
-	if (list == 0 || new == 0)
-		return ;
-	if (*list == 0)
-		*list = new;
-	else
+	i = 0;
+	while (s1[i] != '\0')
+		i++;
+	if (!(cpy = (char*)malloc(sizeof(*cpy) * (i + 1))))
+		return (0);
+	i = 0;
+	while (s1[i] != '\0')
 	{
-		current = *list;
-		while (current->next)
-			current = current->next;
-		current->next = new;
-		new->next = NULL;
+		cpy[i] = s1[i];
+		i++;
 	}
+	cpy[i] = '\0';
+	return (cpy);
 }

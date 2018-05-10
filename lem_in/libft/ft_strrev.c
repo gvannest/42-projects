@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddfirst.c                                   :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 14:13:10 by gvannest          #+#    #+#             */
-/*   Updated: 2018/03/19 16:24:28 by gvannest         ###   ########.fr       */
+/*   Created: 2017/12/18 17:45:03 by gvannest          #+#    #+#             */
+/*   Updated: 2017/12/18 19:44:08 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstpushback(t_list **list, t_list *new)
+char	*ft_strrev(char *str)
 {
-	t_list *current;
+	size_t	i;
+	size_t	j;
+	char	tmp;
 
-	if (list == 0 || new == 0)
-		return ;
-	if (*list == 0)
-		*list = new;
-	else
+	i = 0;
+	j = ft_strlen(str) - 1;
+	while (i < j)
 	{
-		current = *list;
-		while (current->next)
-			current = current->next;
-		current->next = new;
-		new->next = NULL;
+		tmp = (str)[i];
+		(str)[i] = (str)[j];
+		(str)[j] = tmp;
+		i++;
+		j--;
 	}
+	return (str);
 }

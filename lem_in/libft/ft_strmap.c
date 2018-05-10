@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddfirst.c                                   :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 14:13:10 by gvannest          #+#    #+#             */
-/*   Updated: 2018/03/19 16:24:28 by gvannest         ###   ########.fr       */
+/*   Created: 2017/11/14 16:07:30 by gvannest          #+#    #+#             */
+/*   Updated: 2017/11/21 09:19:13 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstpushback(t_list **list, t_list *new)
+char	*ft_strmap(char const *s, char (*f)(char))
 {
-	t_list *current;
+	size_t	i;
+	char	*str;
 
-	if (list == 0 || new == 0)
-		return ;
-	if (*list == 0)
-		*list = new;
-	else
+	if (s)
 	{
-		current = *list;
-		while (current->next)
-			current = current->next;
-		current->next = new;
-		new->next = NULL;
+		i = 0;
+		if (!(str = (char*)malloc(sizeof(*str) * (ft_strlen(s) + 1))))
+			return (0);
+		while (*(s + i) != '\0')
+		{
+			str[i] = (*f)(s[i]);
+			i++;
+		}
+		str[i] = '\0';
+		return (str);
 	}
+	return (0);
 }

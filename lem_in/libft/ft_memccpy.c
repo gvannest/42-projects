@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddfirst.c                                   :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 14:13:10 by gvannest          #+#    #+#             */
-/*   Updated: 2018/03/19 16:24:28 by gvannest         ###   ########.fr       */
+/*   Created: 2017/11/16 11:54:20 by gvannest          #+#    #+#             */
+/*   Updated: 2017/11/21 16:48:27 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstpushback(t_list **list, t_list *new)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	t_list *current;
+	size_t			i;
+	unsigned char	c1;
+	unsigned char	*dst1;
+	unsigned char	*src1;
 
-	if (list == 0 || new == 0)
-		return ;
-	if (*list == 0)
-		*list = new;
-	else
+	dst1 = (unsigned char*)dst;
+	src1 = (unsigned char*)src;
+	c1 = (unsigned char)c;
+	i = 0;
+	if (n != 0)
 	{
-		current = *list;
-		while (current->next)
-			current = current->next;
-		current->next = new;
-		new->next = NULL;
+		while (i < n)
+		{
+			dst1[i] = src1[i];
+			if (src1[i] == c1)
+				return ((void*)(dst1 + i + 1));
+			i++;
+		}
+		return (0);
 	}
+	return (0);
 }

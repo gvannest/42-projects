@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddfirst.c                                   :+:      :+:    :+:   */
+/*   ft_lstrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 14:13:10 by gvannest          #+#    #+#             */
-/*   Updated: 2018/03/19 16:24:28 by gvannest         ###   ########.fr       */
+/*   Created: 2017/11/24 17:26:39 by gvannest          #+#    #+#             */
+/*   Updated: 2017/11/24 20:27:04 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstpushback(t_list **list, t_list *new)
+void	ft_lstrev(t_list **alst)
 {
-	t_list *current;
+	t_list *l1;
+	t_list *l2;
+	t_list *l3;
 
-	if (list == 0 || new == 0)
+	if (!(*alst)->next)
 		return ;
-	if (*list == 0)
-		*list = new;
-	else
+	l1 = *alst;
+	l2 = l1->next;
+	l3 = l2->next;
+	l1->next = NULL;
+	l2->next = l1;
+	while (l3)
 	{
-		current = *list;
-		while (current->next)
-			current = current->next;
-		current->next = new;
-		new->next = NULL;
+		l1 = l2;
+		l2 = l3;
+		l3 = l3->next;
+		l2->next = l1;
 	}
+	*alst = l2;
 }

@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddfirst.c                                   :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 14:13:10 by gvannest          #+#    #+#             */
-/*   Updated: 2018/03/19 16:24:28 by gvannest         ###   ########.fr       */
+/*   Created: 2017/11/13 13:37:43 by gvannest          #+#    #+#             */
+/*   Updated: 2017/11/16 14:59:07 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstpushback(t_list **list, t_list *new)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	t_list *current;
+	size_t			i;
+	unsigned char	*dst1;
+	unsigned char	*src1;
 
-	if (list == 0 || new == 0)
-		return ;
-	if (*list == 0)
-		*list = new;
+	dst1 = (unsigned char*)dst;
+	src1 = (unsigned char*)src;
+	i = 0;
+	if (dst1 < src1)
+		while (i < len)
+		{
+			dst1[i] = src1[i];
+			i++;
+		}
 	else
 	{
-		current = *list;
-		while (current->next)
-			current = current->next;
-		current->next = new;
-		new->next = NULL;
+		i = len - 1;
+		while (len)
+		{
+			dst1[i] = src1[i];
+			i--;
+			len--;
+		}
 	}
+	return ((void*)dst1);
 }

@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddfirst.c                                   :+:      :+:    :+:   */
+/*   ft_lecture.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 14:13:10 by gvannest          #+#    #+#             */
-/*   Updated: 2018/03/19 16:24:28 by gvannest         ###   ########.fr       */
+/*   Created: 2017/12/22 13:13:36 by gvannest          #+#    #+#             */
+/*   Updated: 2018/02/01 15:42:42 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstpushback(t_list **list, t_list *new)
+void	ft_buffer(const char c, t_lst *p)
 {
-	t_list *current;
-
-	if (list == 0 || new == 0)
-		return ;
-	if (*list == 0)
-		*list = new;
-	else
+	if ((INDEX_BUF != 0) && (INDEX_BUF % BUF_SIZE == 0))
 	{
-		current = *list;
-		while (current->next)
-			current = current->next;
-		current->next = new;
-		new->next = NULL;
+		write(1, BUF, BUF_SIZE);
+		ft_bzero(BUF, BUF_SIZE);
 	}
+	BUF[INDEX_BUF % BUF_SIZE] = c;
+	INDEX_BUF++;
 }

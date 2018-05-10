@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddfirst.c                                   :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 14:13:10 by gvannest          #+#    #+#             */
-/*   Updated: 2018/03/19 16:24:28 by gvannest         ###   ########.fr       */
+/*   Created: 2017/11/09 19:32:00 by gvannest          #+#    #+#             */
+/*   Updated: 2017/11/16 17:06:57 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstpushback(t_list **list, t_list *new)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	t_list *current;
+	size_t i;
+	size_t j;
+	size_t k;
 
-	if (list == 0 || new == 0)
-		return ;
-	if (*list == 0)
-		*list = new;
-	else
+	j = 0;
+	i = ft_strlen(dst);
+	k = i;
+	if (size <= i)
+		return (ft_strlen(src) + size);
+	while (i < (size - 1) && src[j])
 	{
-		current = *list;
-		while (current->next)
-			current = current->next;
-		current->next = new;
-		new->next = NULL;
+		dst[i] = src[j];
+		i++;
+		j++;
 	}
+	dst[i] = '\0';
+	return (k + ft_strlen(src));
 }

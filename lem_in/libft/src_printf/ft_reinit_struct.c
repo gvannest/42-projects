@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddfirst.c                                   :+:      :+:    :+:   */
+/*   ft_reinit_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 14:13:10 by gvannest          #+#    #+#             */
-/*   Updated: 2018/03/19 16:24:28 by gvannest         ###   ########.fr       */
+/*   Created: 2018/01/29 12:15:33 by gvannest          #+#    #+#             */
+/*   Updated: 2018/02/12 14:46:21 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstpushback(t_list **list, t_list *new)
+void	ft_reinit_struct(t_lst *p)
 {
-	t_list *current;
-
-	if (list == 0 || new == 0)
-		return ;
-	if (*list == 0)
-		*list = new;
-	else
-	{
-		current = *list;
-		while (current->next)
-			current = current->next;
-		current->next = new;
-		new->next = NULL;
-	}
+	TYPE = 0;
+	FLAGS = 0;
+	SIZE = 0;
+	WIDTH = 0;
+	PRECISION = 0;
+	PRECISION_ON = 0;
+	ft_bzero(COULEUR, sizeof(COULEUR));
 }

@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddfirst.c                                   :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 14:13:10 by gvannest          #+#    #+#             */
-/*   Updated: 2018/03/19 16:24:28 by gvannest         ###   ########.fr       */
+/*   Created: 2017/11/10 10:42:21 by gvannest          #+#    #+#             */
+/*   Updated: 2017/11/16 18:52:58 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstpushback(t_list **list, t_list *new)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-	t_list *current;
+	size_t i;
+	size_t j;
 
-	if (list == 0 || new == 0)
-		return ;
-	if (*list == 0)
-		*list = new;
-	else
+	i = 0;
+	if (ft_strlen(needle) == 0)
+		return ((char*)haystack);
+	while (i < ft_strlen(haystack))
 	{
-		current = *list;
-		while (current->next)
-			current = current->next;
-		current->next = new;
-		new->next = NULL;
+		j = 0;
+		while (haystack[i + j] == needle[j] && needle[j])
+			j++;
+		if (!needle[j])
+			return ((char*)(haystack + i));
+		if (!haystack[i + j])
+			return (0);
+		i++;
 	}
+	return (0);
 }

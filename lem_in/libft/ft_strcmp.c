@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddfirst.c                                   :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 14:13:10 by gvannest          #+#    #+#             */
-/*   Updated: 2018/03/19 16:24:28 by gvannest         ###   ########.fr       */
+/*   Created: 2017/11/10 12:10:29 by gvannest          #+#    #+#             */
+/*   Updated: 2017/11/21 13:27:45 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstpushback(t_list **list, t_list *new)
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	t_list *current;
+	size_t			i;
+	unsigned char	*p1;
+	unsigned char	*p2;
 
-	if (list == 0 || new == 0)
-		return ;
-	if (*list == 0)
-		*list = new;
-	else
-	{
-		current = *list;
-		while (current->next)
-			current = current->next;
-		current->next = new;
-		new->next = NULL;
-	}
+	p1 = (unsigned char*)s1;
+	p2 = (unsigned char*)s2;
+	i = 0;
+	while (p1[i] == p2[i] && p1[i] && p2[i])
+		i++;
+	return (p1[i] - p2[i]);
 }

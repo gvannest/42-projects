@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddfirst.c                                   :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 14:13:10 by gvannest          #+#    #+#             */
-/*   Updated: 2018/03/19 16:24:28 by gvannest         ###   ########.fr       */
+/*   Created: 2017/11/22 13:08:59 by gvannest          #+#    #+#             */
+/*   Updated: 2017/11/22 13:26:26 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstpushback(t_list **list, t_list *new)
+void	ft_lstdel(t_list **alst, void (*del)(void*, size_t))
 {
-	t_list *current;
+	t_list *list1;
+	t_list *list2;
 
-	if (list == 0 || new == 0)
+	list1 = *alst;
+	if (alst == 0)
 		return ;
-	if (*list == 0)
-		*list = new;
-	else
+	while (list1)
 	{
-		current = *list;
-		while (current->next)
-			current = current->next;
-		current->next = new;
-		new->next = NULL;
+		list2 = list1;
+		(*del)(list1->content, list1->content_size);
+		list1 = list1->next;
+		free(list2);
 	}
+	*alst = NULL;
 }
