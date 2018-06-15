@@ -1,0 +1,471 @@
+Corewar
+ 
+First of all, let’s define what this project is all about :
+ 
+A “Machine” is a contraption able to manipulate symbols on a strip of memory according to a table of rules. It would begin at some point of the tape. This machine is basically able to do 3 things : Read the value, Write a value or Move across the tape. This kind of machine uses “States” to know what to do next knowing the value under the reading head in the memory. These “states” define the behaviour of the machine during the next action.
+ 
+
+ 
+Let’s consider a machine with 3 states : A B and C define as followed :
+ 
+A : 	If value equals 0 :
+		Go backward and go to state B
+if value equals 1 :
+		Write 2, go forward and stay in state A
+	if value equals 3 :
+		Stop
+ 
+B :	if value equals 2 :
+Go backward, write 0 and stay in state B
+else :
+	Go to state A
+ 
+Which can be represented as follow :
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Now, lets initialize our machine :
+	State = A;
+	Position = 1;
+ 
+
+ 
+Finally, let’s put some values on the tape :
+ 
+ 
+Position
+0
+1
+2
+3
+4
+5
+Value
+3
+1
+1
+1
+1
+0
+ 
+ 
+
+ 
+Now, let the magic begin :
+ 
+The machine is in state A and reads 1. So, it write 2, go forward and stay in A
+ 
+ 
+Position
+0
+1
+2
+3
+4
+5
+Value
+3
+2
+1
+1
+1
+0
+ 
+ 
+Again, the machine is in state A and reads 1. So, it write 2, go forward and stay in A
+ 
+ 
+Position
+0
+1
+2
+3
+4
+5
+Value
+3
+2
+2
+1
+1
+0
+ 
+And so on until index 5
+ 
+ 
+Position
+0
+1
+2
+3
+4
+5
+Value
+3
+2
+2
+2
+2
+0
+ 
+ 
+ 
+ 
+ 
+ 
+At this point, the machine is in state A and reads 0. So, it goes backward and to state B
+ 
+ 
+Position
+0
+1
+2
+3
+4
+5
+Value
+3
+2
+2
+2
+2
+0
+ 
+Here, it will be in state B and reads 0. So, it writes 0, go backward and stay in B. And it will loop like this until position 0 :
+ 
+ 
+Position
+0
+1
+2
+3
+4
+5
+Value
+3
+0
+0
+0
+0
+0
+ 
+At this point, the machine goes to state A, read 3 and stops.
+ 
+
+ 
+This is a machine with a defined behaviour which will always try to replace every 1 ahead by 2’s until it reach a 3 and halt or a 0 and replace every 2 by 1’s until it reaches a 3.
+ 
+We see here that state A can’t accept the fact of reading a 2 for example. So, the memory has to obey certain rules defined by the “Language” (the bytecode) readable by the machine.
+ 
+
+ 
+Well, now, our machine is not capable of doing much with this set of states. To change the behaviour of the machine, we will have to create another set of states. Also, in order to do operations, we will need something to perform computations. Like an ALU : Arithmetical and Logical Unit. It will perform simple calculus like multiply a number by 2. Finally, in order to store operation result or other temporary datas, we will need small memory spaces inside the machine (and not in the ribbon) called registries.
+ 
+Let’s build a machine that multiplies all the ribbon by two until a final 0. Super easy :
+ 
+State A:	if Value equals 0 then stop
+else Store the value in Register0 and go to state B
+State B:	Multiply the value in Register0 by two and go to state C
+State C:	Write the value of Register0, go foreward and to to state A 
+ 
+
+ 
+ 
+ 
+If you take a machine initialized like that :
+	State = A;
+	Position = 0;
+ 
+And a memory array like that :
+ 
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+14
+52
+4
+8
+631
+3
+532
+222
+325
+42
+31
+0
+ 
+After the machine stops we will retrieve :
+ 
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+28
+104
+8
+16
+1262
+6
+1064
+444
+650
+84
+62
+0
+ 
+It’s exactly what we designed the machine to do.
+ 
+
+ 
+The problem is that this machine is not programmable. It is build for a purpose only. The set of states defines a precise, simple behaviour. What if we build a machine capable of performing tasks defined by the values stored in the ribbon and not in the machine itself? We will need a state set designed to recognize and perform tasks (operations) instead of performing only one task. 
+ 
+Let’s say that we need a machine able to take a rubban of numbers, and be able to do mathematical operations over it. We need 3 things : The operation itself, a mean of looping across the entire array and a dedicated place to store datas.
+ 
+The operation itself is handled by the ALU.
+ In order to loop, we will need a mean of knowing where we are in the array, test if the array is not finished and finally, jump to the start of the loop. Let’s consider this set of operations :
+ 
+loadD:		Store a defined value inside RegAdr.
+load@:		Store the value contained at an address inside R0
+store@:	Store the value of a R0 at RegAdr address.
+math*2:	Multiply R0 by two
+math+1:	Add one to the RegAdr value
+if0:		Set RegCary to 1 if R0 != 0 and to 0 if R0 == 0
+jmp:		Move to the address defined if the value of the RegCary is 1
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+Assuming that our machine will be able to perform these tasks, let’s write the following program:
+ 
+loadD		value=<addressArray> 	into RegAdr
+load@ 		from RegAdr’s address 	into R0
+math*2	
+store@		from R0			into RegAdr’s address
+math+1
+if0
+jmp		5 Operations back
+stop
+ 
+ 
+ 
+In fact this program is exactly :
+ 
+int	arr[4] = {1, 2, 3, 0};
+int	*RegAdr;
+int	R0;
+ 
+RegAdr = arr;
+do
+{
+	R0 = *RegAdr;
+	R0 = R0 * 2;
+	*RegAdr = R0;
+	RegAdr++;
+} while (R0 != 0);
+ 
+
+ 
+This is the “Macro programming” part. Now we have to “Micro program” our machine to be able to perform such operations. Let’s give a number to each operation. Let’s give them OP-Codes: 
+ 
+stop		0
+loadD:		1
+load@:		2
+store@:	3
+math*2:	4
+math+1:	5
+if0:		6
+jmp:		7
+
+ 
+if0, math*2 and math+1 are simple operation that can be done inside of the machine, without additional data from the memory ribbon. So, only one step : Read the op code, do the operation and move forward to read another OP_code
+ 
+jmp and loadD will need to read a value (their parameter). So, the machine will perform two steps:
+read the op code and move forward,
+read the data, perform the task (move or read) and move forward again.
+ 
+Finaly store@ and load@ will not need to read a parameter but will need to return from his jump:
+	read the op code, move forward of RegAdr cells
+read/write in/from r0 from/to the memory and move backward the RegAdr value.
+ 
+
+ 
+Now, let’s transform this into states :
+ 
+State A (reading of the op_code):
+	read memory into RegOp, move forward and
+	If RegOp == 0 then stop
+if RegOp == 6 and R0 == 0 then RegCary = 0 and stay in A
+if RegOp == 6 and R0 != 0 then RegCary = 1 and stay in A
+if RegOp == 4 then multiply R0 by two and stay in A
+if RegOp == 5 then add 1 to RegAdr and stay in A
+if RegOp == 2 or 3 then move forward of RegAdr cells and move to C
+else go in B
+ 
+State B (reading the parameter):
+	if RegOp == 7 then read memory into RegPC, move of this amount (positive or negative) and go to state A
+	if RegOp == 1 then read memory into RegAdr, go to state A
+	in each case, move forward
+ 
+State C (Return from jump):
+	if RegOp == 2 then read from memory into R0, move backward of RegAdr and go A
+	if RegOp == 3 then write from R0 in memory, move backward of RegAdr and go A
+ 
+ 
+Here, operations are grouped into states and a registry is used to know the current operation but we could have built a state for each step of each operation. It’s up to the creator.
+ 
+
+ 
+ 
+ 
+Now that we got the machine, let’s initialize it : 
+	Position : 0
+	R0 : 0
+	RegCary : 0
+	RegAdr : 0
+	RegPC : 0
+	RegOP: 0
+	State : A
+ 
+
+ 
+Now, we need the ribbon to operate this machine, let’s create it with two zones :
+	One for the program.
+	One for the data
+ 
+Program part:
+ 
+ 
+Index
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Value
+1
+42
+2
+4
+3
+5
+6
+7
+-7
+0
+0
+ 
+Here, the parameter of the jump is 7 cells back for 5 operations back
+ 
+ 
+ 
+Data part :
+ 
+Index
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+Value
+0
+0
+12
+10
+8
+6
+4
+2
+1
+0
+0
+ 
+ 
+All of this is on the same ribbon, but far apart. The action of translating the human-readable program into machine-readable, op_code array is called the compiling. Here, we are using directly the operation available in our machine, so it’s called the assembly language that we assemble (compile) with an assembler (compiler).
+ 
+If we launch our machine we will see that it will read the program section and multiply all values from index 42 to the next 0. (Yes, 42 is totally arbitrary)
+ 
+
+ 
+ 
+So that’s it, we managed to build a machine, with a small operation set capable of being programmable. I mean, read compiled code and execute it.
+The problem is that our operation set is really narrow and greatly limits what can be done by our machine.
+ 
+First of all, we can improve the ALU in order to perform other operations or add an other reading head to read without moving the “Program reading” head… But the problem will be the same, our operations are too much specific. They work with only one particular register for example. What if we need to load a value to R0? and then to R1 for example? Why didn’t we put the source and the destination into the parameters of the operation.
+ 
+
+ 
+Corewar will function exactly like that. We will get :
+ 
+The OPCode
+The ParametersCode
+The parameters
+ 
+The parameters code will describe the type of the following parameters. It is a binary code on 8 bits. The two first bits store the first parameter type. The second two bits store the type of the second parameter, same for the third and fourth.
+ 
+A parameter can be :
+	A value stored in memory (direct) : 0b10
+An address (indirect) : 0b11
+A registry : 0b01
+ 
+The machine then reads the OPCode, know if there is a ParametersCode Byte after (not for all Operations). Reads it if there is one. Then reads the parameters of the Operation. Each Operation got a fixed number of parameters. The chart may be found here.
+ 
+
+ 
+Doing the assembly is just parsing the file and convert it into the compiled program made of binary values as explained before.
+ 
+Doing the VM is just creating a set of states capable of reading such a compiled file and perform the associated tasks.
+ 
+The ribbon of memory will be an array.
+A machine is composed of registries (variables), a program counter (the reading head) and a state set.
+Each process is a machine. Every machines are working at the same time and at the same speed in the same memory area (the ribbon).
+ 
+ 
+ 
+ 
+The state set / State machine
+ 
+I’ve already done a state machine in order to understand a file and retrieve datas in it.
+It is made of a file for each state with a function inside.
+Each function takes two parameters : the entry data (the value readed for example) and a data on which actions will be performed (in our case, the process). It returns a function pointer, pointing at the next state regarding the input datas.
+ 
+The state machine itself got a static variable where the state pointer will be kept. At each use of the machine, the state will be updated with the return value of the current state.
