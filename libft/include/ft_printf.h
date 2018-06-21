@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 10:43:06 by gvannest          #+#    #+#             */
-/*   Updated: 2018/02/13 17:15:58 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/06/21 13:45:56 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct	s_lst
 }				t_lst;
 
 int				ft_printf(const char *format, ...);
+int				ft_dprintf(int fd, const char *format, ...);
 void			ft_init_struct(t_lst *p);
 void			ft_buffer(const char c, t_lst *p);
 int				ft_control_flags(const char *format, t_lst *p);
