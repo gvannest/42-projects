@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 14:30:07 by gvannest          #+#    #+#             */
-/*   Updated: 2018/06/26 10:42:47 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/06/29 19:13:33 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,23 +109,31 @@ static void			ft_sort_pyr(t_arena *arena)
 	}
 }
 
-void			ft_param(int argc, char **argv, t_arena *arena)
+char				ft_param(int argc, char **argv, t_arena *arena)
 {
 	int		i;
+	char	v;
 
 	i = 1;
+	v = 0;
 	if (argc == 1 || argc > MAX_ARG)
 		ft_error_vm(1, "Wrong number of arguments", "", 0);
 	while (i < argc)
 	{
 		if (!ft_check_param(argv, argc, i, arena))
 			ft_error_vm(1, "Error usage : wrong arguments", "", 0);
+		if (ft_strcmp(argv[i], "-visual") == 0)
+			v = 1;
 		ft_upload_num_player(argv, i, arena);
 		i++;
 	}
-	if (arena->nb_pyrs < 1 || arena->nb_pyrs > 4)
+	if (v == 1 && arena->nb_pyrs > 6)
+		ft_error_vm(7, "Error : cannot use -visual with more than 6 players",
+				"", 0);
+	if (arena->nb_pyrs < 1 || arena->nb_pyrs > MAX_PLAYERS)
 		ft_error_vm(3, "Error : wrong number of players", "", arena->nb_pyrs);
 	ft_fill_pyr_nbr(arena);
 	ft_sort_pyr(arena);
+	return (v);
 }
 

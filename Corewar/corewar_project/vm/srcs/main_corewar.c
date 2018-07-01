@@ -6,7 +6,7 @@
 /*   By: gvannest <gvannest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 17:54:27 by gvannest          #+#    #+#             */
-/*   Updated: 2018/06/27 10:29:48 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/06/29 19:15:28 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,15 @@ static void		ft_open_cor(t_arena *arena, char **argv, int i)
 
 int				main(int argc, char **argv)
 {
-	t_arena	arena;
-	int		i;
+	t_arena		arena;
+	t_corvisu	visual;
+	int			i;
+	char		v;
 
 	i = 0;
 	ft_bzero(&arena, sizeof(arena));
-	ft_param(argc, argv, &arena);
+	if ((v = ft_param(argc, argv, &arena)) == 1)
+		ft_init_visual(&arena, &visual);
 	while (i < argc)
 	{
 		if (ft_strstr(argv[i], ".cor"))
