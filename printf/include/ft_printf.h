@@ -6,14 +6,13 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 10:43:06 by gvannest          #+#    #+#             */
-/*   Updated: 2018/02/12 14:23:57 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/02/13 17:15:58 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include <stdarg.h>
-# include <stdio.h>
 # include <wchar.h>
 # include "libft.h"
 # include <limits.h>
