@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 08:40:27 by gvannest          #+#    #+#             */
-/*   Updated: 2017/11/21 11:40:49 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/07/23 15:39:33 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_strtrim(char const *s)
 		while ((s[j] == ' ' || s[j] == ',' || s[j] == '\n' ||
 				s[j] == '\t') && j)
 			j--;
-		if (j <= i)
+		if (j < i)
 			str = ft_strnew(1);
 		else
 			str = ft_strsub(s, i, j - i + 1);
