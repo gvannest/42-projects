@@ -16,6 +16,7 @@
 # include <wchar.h>
 # include "libft.h"
 # include <limits.h>
+# include <stdint.h>
 
 # define BUF_SIZE 1024
 # define ALL_TYPES "sSpdDioObuUxXcC%"
