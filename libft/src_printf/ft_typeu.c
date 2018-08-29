@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:27:41 by gvannest          #+#    #+#             */
-/*   Updated: 2018/02/10 15:02:23 by gvannest         ###   ########.fr       */
+/*   Updated: 2018/08/29 16:52:34 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int				ft_type_u(t_lst *p, va_list ap)
 		ft_buffer(itoa[i++], p);
 	if (FLAGS & MINUS)
 		ft_width(p, ' ', len);
-	if (itoa && n != 0)
+	if (itoa != NULL)
 		ft_strdel(&itoa);
 	return (0);
 }

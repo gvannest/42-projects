@@ -30,9 +30,7 @@ static void		ft_width(t_lst *p)
 int				ft_type_c(t_lst *p, va_list ap)
 {
 	wchar_t		c;
-	size_t		i;
 
-	i = 0;
 	if (SIZE & L || SIZE & LL)
 		return (ft_type_unicodec(p, ap));
 	c = ft_cast_char(p, ap);

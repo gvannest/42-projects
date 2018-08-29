@@ -29,11 +29,8 @@ static void		ft_width(t_lst *p)
 
 int				ft_type_percent(t_lst *p, va_list ap)
 {
-	size_t		i;
-
 	ap = 0;
-	i = 0;
-	if (!(FLAGS & MINUS))
+	if (!(FLAGS & MINUS) && ap == 0)
 		ft_width(p);
 	ft_buffer(TYPE, p);
 	if (FLAGS & MINUS)
