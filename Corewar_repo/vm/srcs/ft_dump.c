@@ -6,7 +6,7 @@
 /*   By: msicot <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 10:33:38 by msicot            #+#    #+#             */
-/*   Updated: 2018/08/28 16:56:52 by msicot           ###   ########.fr       */
+/*   Updated: 2018/08/29 17:12:57 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void		ft_dump_mem(t_arena *arena)
 			ft_printf("\n");
 	}
 	ft_free_listproc(arena->list_proc);
+	exit(0);
 }
 
 int			ft_dump(t_arena *arena, char **argv, int argc, int i)
