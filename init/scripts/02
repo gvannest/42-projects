@@ -1,0 +1,18 @@
+#!/bin/bash
+
+CRON_TMP=~/cron_tmp
+
+crontab -l > ${CRON_TMP} 2>/dev/null
+
+if grep -q "~/apt_update.sh" ${CRON_TMP}
+
+then
+	echo "Rule already exists in crontab"
+else
+	echo "sudo apt-get update && sudo apt-get upgrade >> /var/log/update_script.log" >> ~/apt_update.sh
+	echo "0 4 * * 1 sudo sh ~/apt_update.sh" >> ${CRON_TMP}
+	crontab ${CRON_TMP}
+fi
+
+rm ${CRON_TMP}
+

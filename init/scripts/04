@@ -1,0 +1,34 @@
+#!/bin/bash
+
+CRON_TMP=~/cron_tmp
+PATH_SCRIPT=~/script_04.sh
+
+cat << EOF > ${PATH_SCRIPT}
+HASHFILE=~/crontab_hash
+CRONTAB_CRT=/etc/crontab
+
+if [ ! -f ${HASHFILE} ]
+then
+	md5sum ${CRONTAB_CRT} > ${HASHFILE} 2>/dev/null
+else
+	md5sum ${CRONTAB_CRT} > ${HASHFILE}2 2>/dev/null
+	if diff ${HASHFILE} ${HASHFILE}2
+	then
+		echo "" | mail -s "WARNING : Crontab has been modified" root
+		echo "modification"
+	fi
+	cat ${HASHFILE}2 > ${HASHFILE}
+fi
+EOF
+
+crontab -l > ${CRON_TMP} 2>/dev/null
+
+if grep -q "~/script_04.sh" ${CRON_TMP}
+then
+	echo "Rule already exists in crontab"
+else
+	echo "0 0 * * * sudo sh ${PATH_SCRIPT}" >> ${CRON_TMP}
+	crontab ${CRON_TMP}
+fi
+
+rm ${CRON_TMP}
