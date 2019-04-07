@@ -1,0 +1,20 @@
+{% extends 'bootstrap3/bootstrap3.html' %}
+
+{% block bootstrap3_content %}
+
+<h3>Articles </h3>
+
+    {% for fav in object_list %}
+    <ul>
+        <li><a href="{% url 'detail' pk=fav.article.id %}">{{fav.article.title}}</a></li>
+    </ul>
+    {% endfor %}
+
+
+{% if request.user.is_authenticated %}
+<br><br>
+<a href="{% url 'logout' %}">Logout</a>
+{% endif %}
+
+
+{% endblock %}

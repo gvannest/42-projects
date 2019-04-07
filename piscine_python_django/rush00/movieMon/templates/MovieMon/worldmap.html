@@ -1,0 +1,37 @@
+{% extends "./base.html" %}
+{% block title %} WorldMap {% endblock %}
+
+{% block grid %}
+    {% load static %}
+
+<table class="grid"
+       style="background: url({% static 'background.jpg' %}); background-repeat: no-repeat;  background-size: cover; background-position: center">
+    {% for row in matrix %}
+    <tr>
+        {% for cell in row %}
+        {% if cell == 'P' %}
+
+        <td class="cell"><img
+                src={% static 'character.png' %}
+                alt="player" height="50" width="50"></td>
+        {% else %}
+        <td class="cell"></td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+
+{% block top_display %}
+{% for line in top_message %}
+<div>{{line}}</div>
+{% endfor %}
+{% endblock %}
+
+{% block bottom_display %}
+{% for line in bottom_message %}
+<div>{{line}}</div>
+{% endfor %}
+{% endblock %}
+

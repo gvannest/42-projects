@@ -1,0 +1,41 @@
+{% extends 'bootstrap3/bootstrap3.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block bootstrap3_content %}
+
+{% include "infra/nav.html" %}
+
+<div style="margin-left:20px">
+<h3>Post Detail</h3>
+<table class='table table-striped table-bordered table-hover table-condensed'>
+    <tr>
+        <td>Title : </td><td>{{ object.title }}</td>
+    </tr>
+    <tr>
+        <td>Author : </td><td>{{ object.author }}</td>
+    </tr>
+    <tr>
+        <td>Content : </td><td>{{ object.content }}</td>
+    </tr>
+    <tr>
+        <td>Created : </td><td>{{ object.created }}</td>
+    </tr>
+    {% if object.parent %}
+    <tr>
+            <td>Fils : </td><td>{{ object.parent }}</td>
+    </tr>
+    {% endif %}
+</table>
+
+<div style="margin-left:40px">
+    <form  method="post">
+        {% csrf_token %}
+            {{ form|crispy }}
+        <input type="submit" value="Post">
+    </form>
+</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,244 @@
+div {
+    font-family: Courier, monospace;
+    color: white;
+}
+
+button {
+    font-family: Courier, monospace;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.top_display {
+    background-color: black;
+    height: 50px;
+    width: 450px;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    padding: 20px 10px 0 30px;
+}
+
+.bottom_display {
+    background-color: black;
+    height: 50px;
+    width: 450px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    padding: 10px 10px 10px 30px;
+}
+
+.top {
+    background-color: #1e3e4d;
+    width: 500px;
+    padding: 25px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.screen {
+    width: 490px;
+    background-color: white;
+    border: 5px solid black;
+    border-radius: 50px;
+}
+
+.grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controls {
+    height: 140px;
+    width: 470px;
+    background-color:  #1e3e4d;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding: 20px 40px 40px;
+}
+
+td {
+    height: 35px;
+    width: 35px;
+    color: white;
+}
+
+table {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.a_b_table {
+    margin: 0 0 0 20px;
+}
+
+.game_control_table {
+    border-collapse: collapse;
+}
+
+.arrow {
+    background-image: linear-gradient(45deg, grey, #474748);
+    border: 2px solid #5c5c5d;
+
+    border-radius: 3px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.arrow button {
+    color: grey;
+     background-image: linear-gradient(45deg, grey, #474748);
+    border: 2px solid #5c5c5d;
+    height: 35px;
+    width: 35px;
+}
+
+.arrow button:active {
+    outline: none;
+}
+
+.middle_button {
+    color: grey;
+    background-image: linear-gradient(45deg, grey, #474748);
+    border: 2px solid #5c5c5d;
+    height: 33px;
+    width: 33px;
+    border-radius: 100%;
+}
+
+.arrow button:active {
+    outline: none;
+}
+
+.arrow button:focus {
+    outline: none;
+}
+
+.game_control {
+    height: 28px;
+    width: 28px;
+    background-image: linear-gradient(45deg, #00ae00, #2a6e1f);
+    border: 2px solid #008600;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 50px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 10px;
+    margin: 5px 10px 5px 0;
+}
+
+.action_button {
+    background-image: linear-gradient(50deg, #aa0000, #630000);
+    border: 2px solid #6e474f;
+
+    border-radius: 100%;
+    height: 40px;
+    width: 40px;
+}
+
+.letter {
+    margin: 0 13px;
+    font-size: 20px;
+}
+
+.title_screen {
+    font-size: 30px;
+    background-color: black;
+    height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.grid {
+    border-collapse: collapse;
+    margin: 0 0;
+    border: none;
+}
+
+.cell {
+    border: none;
+    height: 49px;
+    width: 49px;
+}
+
+.poster_background {
+    background-color: black;
+    display: flex;
+    align-content: center;
+    height: 520px;
+
+}
+
+.result {
+    background-color: #aa0000;
+    font-size: 60px;
+    font-weight: bolder;
+    color: white;
+    margin: auto auto;
+    text-align: center;
+}
+
+.moviedex {
+    height: 516px;
+    background-color: black;
+    overflow-y: auto;
+}
+
+.moviedex_poster_active {
+    border: 4px solid #7ffea8;
+    margin: 0;
+}
+
+
+.moviedex_poster {
+    border: 4px solid black;
+    margin: 0;
+}
+
+.info_view {
+    height: 516px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.details_poster {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.details {
+    padding: 40px 40px 0;
+}
+
+.info_line {
+    margin-top: 10px;
+}
+
+.save_arrow {
+    width: 80px;
+}
+
+.save_name {
+    width: 150px;
+}
+
+.save_info {
+    width: 120px
+}
+
+.a_button {
+    background-image: linear-gradient(45deg, #aa0000, #630000);
+    border: none;
+    border-radius: 100%;
+    font-size: 20px;
+    /*margin: 0 6px;*/
+    height: 40px;
+    width: 40px;
+}

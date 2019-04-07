@@ -1,0 +1,50 @@
+{% extends "ex01/base.html" %}
+
+
+{% block content %}
+<div>
+<h2> Django c'est quoi? </h2>
+<p><strong> Django </strong> est un <strong> framework </strong><strong> python </strong><strong> open-source </strong>
+    consacré au <u> développement web 2.0 </u> . Les concepteurs de Django lui ont attribué le slogan suivant: " <i> Le
+        framework web pour les perfectionnistes sous pression </i> ". Il est donc clairement orienté pour les
+    développeurs ayant comme besoin de <u> produire un projet solide rapidement et sans surprise </u> ... c'est à dire à
+    tous les développeurs ! </p>
+<p> Comme il est toujours compliqué de partir de rien, Django vous propose une base de projet solide. <strong>
+    Django </strong> est donc une belle boîte à outils qui aide et oriente le développeur dans la construction de ses
+    projets. </p>
+<p> Pour la petite histoire Django a vu le jour en 2003 et a été publié sous licence BSD en juillet 2005. </p>
+<h2> Pourquoi travailler avec le framework Django? </h2>
+<p> Si vous êtes fan de <strong> python </strong> c'est déjà une bonne raison de s'intéresser à <strong>
+    Django </strong> . Beaucoup de développeurs sont <u> beaucoup plus productifs sur python </u> que sur n'importe quel
+    autre language. La technologie derrière ce framework peut être une bonne raison, mais <strong> Django </strong> est
+    une raison à part entière. Tout est pensé de base. Inutile de réinventer la roue à chaque projet web: les bases sont
+    déjà présentes. Il vous fournira les outils nécessaires à sécuriser votre application, à gérer la structure de vos
+    modèles avec un <a href=./page-django-orm-apprendre-base-donnees-database-queryset-modeles title="Django ORM">
+        ORM </a> , etc. Vous n'avez plus qu'à vous consacrer au code métier, à vous concentrer sur l'essence même de
+    votre projet et rien d'autre. </p>
+<h2> La structure Django </h2>
+<p><strong> Django </strong> s'inspire du modèle <strong> MVC </strong> (disons plutot MVT), c'est-à-dire que la
+    structure du framework sépare les données ( <u> models </u> ) qui sont séparées des traitements ( <u>
+        controller </u> ) qui sont eux-mêmes séparés de la vue ( <a
+            href=./page-django-vues-views-generic-generiques-python title="Django views"> view </a> / <a
+            href=./page-django-templates-structure-template-HTML-variables-boucles-tags-filtre-page-dry-application-projet-modifier-dossier
+            title="Django template"> template </a> ). On vous oblige à bien coder, une structure doit être respectée et
+    cela ne peut être que profitable au travail collaboratif ou simplement la cohérence / communication entre différents
+    projets. </p>
+<p> Le <u> moteur de template </u> de base est le plus simple que j'ai rencontré, efficace souple et facile à prendre en
+    main. Un routeur permet de rediriger les actions en fonctions des URL et une <u> API </u> permet de fournir des
+    informations sur votre projet sans passser par la case SQL. D'ailleurs l' <strong> ORM </strong> inclu vous
+    éloignera de toute requète SQL. </p>
+<p> Chaque projet Django vous propose de lancer son propre serveur web et d'y faire à peu près tout ce que l'on veut
+    dans un environnement de test. </p>
+<p></p>
+<p> Un des concepts des plus intelligent de Django est de proposer un <a
+        href=./page-django-interface-admin-administration-settings-django-contrib-auth title="Django espace admin">
+    espace admin </a> tout fait dans ses <strong> contrib </strong> . Une fois que vous avez créé vos modèles (la
+    structure de votre projet), vous avez accès à une interface web <strong> CRUD </strong> en quelques minutes c'est
+    vraiment impressionnant. </p>
+<p> Vous pouvez évidemment personnaliser cet espace admin ou créer vos propres templates et vos propres <a
+        href=./page-django-formulaires-forms-champs-fields title="Django formulaires"> formulaires </a> . Django vous
+    proposera des outils pour sécuriser les données ou afficher les erreurs si besoin. </p>
+</div>
+{% endblock %}

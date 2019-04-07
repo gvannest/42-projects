@@ -1,0 +1,28 @@
+{% extends "./base.html" %}
+{% block title %} Moviedex {% endblock %}
+
+{% block grid %}
+<div class="moviedex">
+    {% for line in lines %}
+    <div class="moviedex_line">
+        {% for item in line %}
+            <img src="{{item.poster}}"  class="{{item.class}}" height="155" width="103" >
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+
+{% block top_display %}
+    {% for line in top_message %}
+    <div style="text-align: center; font-size: 22px">{{line}}</div>
+    {% endfor %}
+{% endblock %}
+
+{% block bottom_display %}
+ {% for line in bottom_message %}
+    <div>{{line}}</div>
+    {% endfor %}
+{% endblock %}
+

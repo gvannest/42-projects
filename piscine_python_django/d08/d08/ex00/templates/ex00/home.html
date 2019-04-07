@@ -1,0 +1,26 @@
+{% extends 'bootstrap3/bootstrap3.html' %}
+
+
+{% block bootstrap3_content %}
+
+{% load staticfiles %}
+
+<head>
+       <link rel="stylesheet" type="text/css" href="{% static 'ex00/style.css' %}">
+</head>
+
+<p>Submit your files here:</p>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Submit"/>
+</form>
+
+{% for file in files %}
+<img class="img_list" src="{{ file.file.url }}">
+    {{ file.title }}
+{% empty %}
+No file yet.
+{% endfor %}
+
+{% endblock %}

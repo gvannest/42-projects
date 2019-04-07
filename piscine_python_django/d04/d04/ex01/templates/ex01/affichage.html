@@ -1,0 +1,21 @@
+{% extends "ex01/base.html" %}
+
+
+{% block content %}
+
+<h2 id="What_does_Django_code_look_like">What does Django code look like?</h2>
+
+<p>In a traditional data-driven website, a web application waits for HTTP requests from the web browser (or other client). When a request is received the application works out what is needed based on the URL and possibly information in <code>POST</code> data or <code>GET</code> data. Depending on what is required it may then read or write information from a database or perform other tasks required to satisfy the request. The application will then return a response to the web browser, often dynamically creating an HTML page for the browser to display by inserting the retrieved data into placeholders in an HTML template.</p>
+
+<p>Django web applications typically group the code that handles each of these steps into separate files:</p>
+
+<p><img src="https://mdn.mozillademos.org/files/13931/basic-django.png" alt="" style="border-style: solid; border-width: 1px; display: block; margin: 0px auto;"></p>
+
+<ul>
+ <li><strong>URLs: </strong>While it is possible to process requests from every single URL via a single function, it is much more maintainable to write a separate view function to handle each resource. A URL mapper is used to redirect HTTP requests to the appropriate view based on the request URL. The URL mapper can also match particular patterns of strings or digits that appear in an URL, and pass these to a view function as data.</li>
+ <li><strong>View:</strong> A view is a request handler function, which receives HTTP requests and returns HTTP responses. Views access the data needed to satisfy requests via <em>models</em>, and delegate the formatting of the response to <em>templates</em>.</li>
+ <li><strong>Models:</strong> Models are Python objects that define the structure of an application's data, and provide mechanisms to manage (add, modify, delete) and query records in the database. </li>
+ <li><strong>Templates:</strong> A template is a text file defining the structure or layout of a file (such as an HTML page), with placeholders used to represent actual content. A <em>view</em> can dynamically create an HTML page using an HTML template, populating it with data from a <em>model</em>. A template can be used to define the structure of any type of file; it doesn't have to be HTML!</li>
+</ul>
+
+{% endblock %}

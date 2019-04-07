@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+</head>
+<body>
+<div class="top">
+    <div class="screen">
+        <div class="top_display">
+            {% block top_display %}
+            {% endblock %}
+        </div>
+        {% block grid %}
+        {% endblock %}
+        <div class="bottom_display">
+
+            {% block bottom_display %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+<div class="controls">
+    <div>
+        <form action="{{form_action}}/" method="post" style="display: inline-block">
+            {% csrf_token %}
+            <table class="arrows_table">
+                <tr>
+                    <td></td>
+                    <td class='arrow'>
+                        {% if controls.up != None %}
+                        <button type="submit" name='position' value="{{controls.up}}"></button>
+                        <!--<a href="/worldmap?x={{controls.up.0}}&y={{controls.up.1}}" ></a>-->
+                        {% else %}
+                         <button></button>
+                        {% endif %}
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class='arrow'>
+                        {% if controls.left != None %}
+                        <button type="submit" name='position' value="{{controls.left}}"></button>
+                        {% else %}
+                         <button></button>
+                        {% endif %}
+                    </td>
+                    <td class='arrow'><div class="middle_button"></div></td>
+                    <td class='arrow'>
+                        {% if controls.right != None %}
+                        <button type="submit" name='position' value="{{controls.right}}"></button>
+                        {% else %}
+                         <button></button>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class='arrow'>
+                        {% if controls.down != None %}
+                        <button type="submit" name='position' value="{{controls.down}}"></button>
+                        {% else %}
+                         <button></button>
+                        {% endif %}
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
+        <table class="game_control_table">
+            <tr>
+                <td>
+                    {% if controls.select %}
+                    <a href="/{{controls.select}}">
+                        <div class="game_control"></div>
+                    </a></td>
+                {% else %}
+                <div class="game_control"></div>
+                {% endif %}
+                </td>
+                <td> SELECT</td>
+            </tr>
+            <tr>
+                <td>
+                    {% if controls.start %}
+                    <a href="/{{controls.start}}">
+                        <div class="game_control"></div>
+                    </a></td>
+                {% else %}
+                <div class="game_control"></div>
+                {% endif %}
+                </td>
+                <td> START</td>
+            </tr>
+        </table>
+
+        <table class="a_b_table">
+            <tr>
+                <td></td>
+                <td class="action_button">
+
+                    {% if controls.a == 'launched' or controls.a == 0 or controls.a == 1 or controls.a == 2 %}
+                    <form  method="POST">
+                                    {% csrf_token %}
+                        <button class="a_button" name="value" value="{{controls.a}}" type="submit">A</button>
+                    </form>
+                    {% elif controls.a != None %}
+                    <a href="/{{controls.a}}">
+                        <div class="letter">A</div>
+                    </a>
+                    {% else %}
+                    <div class="letter">A</div>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td class="action_button">
+                    {% if controls.b != None %}
+                    <a href="/{{controls.b}}">
+                        <div class="letter">B</div>
+                    </a>
+                    {% else %}
+                    <div class="letter">B</div>
+                    {% endif %}
+                </td>
+                <td></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<table>
+    <tr><th>Name</th><th>Homeworld</th><th>Climate</th></tr>
+    {% for res in response %}
+        <tr>
+            {% for e in res %}
+            <td>{{e}}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

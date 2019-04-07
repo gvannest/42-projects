@@ -1,0 +1,43 @@
+{% extends "ex03/base.html" %}
+
+{% block style %}
+
+<style type="text/css">
+    table {
+        collapse : colspan;
+    }
+    td, th {
+        width : 80px;
+        height : 40px;
+        border : 1;
+    }
+</style>
+
+{% endblock %}
+
+
+
+
+
+{% block content %}
+
+<table border="1">
+    <tr>
+        <th>Noir</th>
+        <th>Rouge</th>
+        <th>Bleu</th>
+        <th>Vert</th>
+    </tr>
+    {% for r in list_colors %}
+    <tr>
+        <td style="background-color:rgb({{r}},{{r}},{{r}})"></td>
+        <td style="background-color:rgb({{r}},0,0)"></td>
+        <td style="background-color:rgb(0,0,{{r}})"></td>
+        <td style="background-color:rgb(0,{{r}},0)"></td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+
+{% endblock %}

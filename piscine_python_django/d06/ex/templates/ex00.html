@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+<nav>Hello
+    {% if request.user.is_authenticated %}
+    {{ request.user }}
+    {% else %}
+    {{ request.COOKIES.mycookie }}
+    {% endif %}
+     !
+    <br>
+</nav>
+</div>
+<div>
+    {% if request.user.is_authenticated %}
+        <form method="POST">Contenu
+        {% csrf_token %}
+        {{ tip_form.contenu }}
+        <input type="submit" value="Submit">
+        </form>
+    {% endif %}
+</div>
+<br>
+<table style="border:solid 1px">
+    <thead>
+        <th>Author</th><th>Content</th><th>Date</th>
+    </thead>
+    <tbody>
+
+{% for tip,counts in dic_tips.items %}
+
+<form method="POST">
+    <tr>
+        {% csrf_token %}
+        <td> {{ tip.auteur}} </td><td>{{ tip.contenu }} </td><td>{{tip.date }}</td>
+        <td><button type="submit" name="delete" value={{tip.id}} {% if not request.user.is_authenticated %}disabled{%endif%}>Delete</button></td>
+        <td><button type="submit" name="upvote" value={{tip.id}} {% if not request.user.is_authenticated %}disabled{%endif%}>Upvote {{counts.0}}</button></td>
+        <td><button type="submit" name="downvote" value={{tip.id}} {% if not request.user.is_authenticated %}disabled{%endif%}>Downvote {{counts.1}}</button></td>
+    </tr>
+</form>
+
+{% endfor %}
+</tbody></table>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "./base.html" %}
+{% block title %} Details {% endblock %}
+
+{% block grid %}
+<div class="info_view">
+    <!--<div class="details_poster"-->
+    <img src="{{movie.poster}}" class='details_poster' height="190" width="125"/>
+    <div class="details">
+    <div class="info_line">DIRECTOR: {{movie.director}}</div>
+    <div class="info_line">YEAR: {{movie.year}}</div>
+    <div class="info_line">RATING: {{movie.rating}}</div>
+    <div class="info_line">ACTORS: {{movie.actors}}</div>
+    <div class="info_line">PLOT: {{movie.summary}}</div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block top_display %}
+    {% for line in top_message %}
+    <div style="text-align: center; font-size: 22px;">{{line}}</div>
+    {% endfor %}
+{% endblock %}
+
+{% block bottom_display %}
+ {% for line in bottom_message %}
+    <div>{{line}}</div>
+    {% endfor %}
+{% endblock %}
+

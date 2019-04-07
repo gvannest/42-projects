@@ -1,0 +1,29 @@
+{% extends "./base.html" %}
+{% block title %} Save {% endblock %}
+
+{% block grid %}
+<div class="title_screen">
+    <table class="save_table">
+        {% for line in table %}
+        <tr>
+            <td class="save_arrow">{{line.arrow}}</td>
+            <td class="save_name">{{line.name}}</td>
+            <td class="save_info">{{line.info}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
+
+{% block top_display %}
+    {% for line in top_message %}
+    <div style="text-align: center; font-size: 22px;">{{line}}</div>
+    {% endfor %}
+{% endblock %}
+
+{% block bottom_display %}
+ {% for line in bottom_message %}
+    <div>{{line}}</div>
+    {% endfor %}
+{% endblock %}
+

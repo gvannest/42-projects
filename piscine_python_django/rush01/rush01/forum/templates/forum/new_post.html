@@ -1,0 +1,18 @@
+
+{% extends 'bootstrap3/bootstrap3.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block bootstrap3_content %}
+
+{% include "infra/nav.html" %}
+
+<div style="margin-left:50px">
+    <form  method="post">
+        {% csrf_token %}
+            {{ form|crispy }}
+        <input type="submit" value="Post">
+    </form>
+</div>
+
+{% endblock %}

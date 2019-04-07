@@ -1,0 +1,13 @@
+{% block nav %}
+    <nav>
+        {% if request.user.is_authenticated %}
+        <a href="/">Mon site</a>
+        <a href="{% url 'deconnexion' %}">Deconnexion</a>
+        {% else %}
+        <a href="/">Mon site</a>
+        <a href="{% url 'inscription' %}">Inscription</a>
+        <a href="{% url 'connexion' %}">Connexion</a>
+        {% endif %}
+    </nav>
+<br>
+{% endblock %}

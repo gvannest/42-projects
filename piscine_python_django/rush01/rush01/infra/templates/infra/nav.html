@@ -1,0 +1,44 @@
+{% extends 'bootstrap3/bootstrap3.html' %}
+
+{% block bootstrap3_content %}
+
+
+{% block nav %}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'post' %}">Forum</a>
+            </div>
+
+        {% if request.user.is_authenticated %}
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'logout' %}">Logout</a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'new_post' %}">New post</a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'profile' pk=request.user.id %}">Profile</a>
+            </div>
+            {% if request.user.is_staff %}
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{% url 'admin' %}">Admin</a>
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'register' %}">Register</a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'login' %}">Login</a>
+            </div>
+        {% endif %}
+        </div>
+    </nav>
+<br>
+{% endblock %}
+
+{% endblock %}

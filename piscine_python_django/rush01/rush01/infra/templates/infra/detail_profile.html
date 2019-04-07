@@ -1,0 +1,29 @@
+<head>
+    <title>Profile detail</title>
+</head>
+
+{% extends 'bootstrap3/bootstrap3.html' %}
+
+
+{% block bootstrap3_content %}
+
+{% include "infra/nav.html" %}
+
+
+{% load crispy_forms_tags %}
+<div style="margin-left:20px">
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form|crispy}}
+    <br>
+    <input type="submit" value="Submit"/>
+</form>
+
+{% if form.image.value %}
+<img class="img-thumbnail" width="304" height="236" src="{{ form.image.value.url }}">
+{% endif %}
+
+
+</div>
+
+{% endblock %}

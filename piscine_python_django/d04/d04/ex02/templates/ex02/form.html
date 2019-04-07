@@ -1,0 +1,21 @@
+{% extends "ex02/base.html" %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+    <h2>Log history :</h2>
+    {% if log_history %}
+    <ul>
+        {% for e in log_history %}
+        <li>
+            {{e}}
+        </li><br>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</form>
+
+{% endblock %}

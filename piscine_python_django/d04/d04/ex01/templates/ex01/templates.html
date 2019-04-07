@@ -1,0 +1,28 @@
+{% extends "ex01/base.html" %}
+
+
+{% load static %}
+{% block style %}
+    <link rel='stylesheet' type='text/css' href="{% static 'ex01/style2.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<h2>Fonctionnement moteur de templates  </h2>
+<ul>
+    <li><h3>Bloc</h3>
+        Un bloc est une partie de code html du fichier template de base, qui sera modifie dans es autres fichiers html<br>
+        Le fichier de base html est importe en debut de fichier et seul le bloc est a modifier
+    </li>
+    <li><h3>Les boucles for...in </h3>
+        Il est possible d'inclure des boucles for dans du code html en iterant entre accolades<br>
+        La liste peut etre passee en parametre dans la fonction render.
+    </li>
+    <li><h3>Les structures de controle if </h3>
+        De meme, il est possible d'inclure des if de controle dans des accolades au sein du code html
+    </li>
+</ul>
+
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "./base.html" %}
+{% block title %} Battle {% endblock %}
+
+{% block grid %}
+<div class="poster_background" style="background-image: url({{movie.poster}}); background-repeat: no-repeat;   background-position: center">
+    <!--<img src="{{movie.poster}}" alt="{{movie.title}}" class="poster"/>-->
+    <div class="result">
+        <div>{{response}}</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block top_display %}
+    {% for line in top_message %}
+    <div>{{line}}</div>
+    {% endfor %}
+{% endblock %}
+
+{% block bottom_display %}
+ {% for line in bottom_message %}
+    <div>{{line}}</div>
+    {% endfor %}
+{% endblock %}
+

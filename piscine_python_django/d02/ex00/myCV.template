@@ -1,0 +1,8 @@
+<p>"-What is your first name?
+-A {firstname}!"</p>
+<p>"-what is your name?
+-A {name}!"</p>
+<p>"-How old are you?
+-A {age}!"</p>
+<p>"-What is your job occupation?
+-A {profession}!"</p>
