@@ -1,0 +1,4 @@
+npuzzle-gen.py
+*.pyc
+__pycache__
+.idea
