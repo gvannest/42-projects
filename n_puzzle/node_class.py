@@ -26,6 +26,7 @@ class Node:
         self.conflict = 0
         self.h = self.h_calc(Node.h_method) if Node.h_algo != 'uniformed_cost' else 0
         self.g = g if Node.h_algo != 'GBFS' else 0
+        self.f = self.h + self.g
 
     def is_final(self):
         """Method which returns True if self is the final node"""

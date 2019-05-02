@@ -43,10 +43,46 @@ class Algo:
 
     def pop_from_heap(self):
         """Popping the first NON-VISITED node of our priority queue"""
-        popped_node = heapq.heappop(self.opened_heap)
-        while tuple(popped_node.grid) in self.closed_set:
-            self.memory_state -= 1
+        try:
             popped_node = heapq.heappop(self.opened_heap)
-        self.selected_nodes += 1
-        return popped_node
+            while tuple(popped_node.grid) in self.closed_set:
+                self.memory_state -= 1
+                popped_node = heapq.heappop(self.opened_heap)
+        except IndexError:
+            return None
+        else:
+            self.selected_nodes += 1
+            return popped_node
+
+
+class Idastar(Algo):
+    def __init__(self):
+        super().__init__()
+
+    def push_to_heap(self, node, opened_heap):
+        """Adding an node to our priority queue"""
+        heapq.heappush(opened_heap, node)
+        self.memory_state += 1
+        if self.memory_state > self.max_memory:
+            self.max_memory = self.memory_state
+        return None
+
+    def pop_from_heap(self, opened_heap):
+        """Popping the first NON-VISITED node of our priority queue"""
+        try:
+            popped_node = heapq.heappop(opened_heap)
+            while tuple(popped_node.grid) in self.closed_set:
+                self.memory_state -= 1
+                popped_node = heapq.heappop(opened_heap)
+        except IndexError:
+            return None
+        else:
+            self.selected_nodes += 1
+            return popped_node
+
+    def clear(self):
+        self.opened_heap = []
+        self.closed_set = set()
+        self.path = deque()
+        self.memory_state = 1
 
