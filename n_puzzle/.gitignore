@@ -2,3 +2,4 @@ npuzzle-gen.py
 *.pyc
 __pycache__
 .idea
+.pytest_cache

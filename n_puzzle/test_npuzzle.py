@@ -1,5 +1,5 @@
 from node_class import Node
-from algo_class import Astar
+from algo_class import Algo
 import pytest
 
 @pytest.fixture
@@ -7,7 +7,7 @@ def generate_nodes():
     Node.final_grid = [1,2,3,8,0,4,7,6,5]
     Node.size = 3
     Node.h_method = 'manhattan'
-    astar = Astar()
+    astar = Algo()
 
     node0 = Node([3,1,5,7,2,6,8,0,4])
     node1 = Node(grid=[2,1,6,8,4,0,5,7,3], g=0)
