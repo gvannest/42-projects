@@ -15,10 +15,12 @@
 
 # include "checker.h"
 
+# define SIZE_OPE 8
+
 typedef struct	        s_tabptrope
 {
     char		ope[4];
-    void        (*ft_ps_ope)(t_stack **, t_stack **);
+    void        (*ft_ps_ope)(t_stack **);
 }				        t_tabptrope;
 
 struct s_tabptrope		tabope[] =
@@ -28,6 +30,9 @@ struct s_tabptrope		tabope[] =
     {"ss", &ft_swap_ss},
     {"pa", &ft_push_a},
     {"pb", &ft_push_b},
+    {"ra", &ft_rotate_a},
+    {"rb", &ft_rotate_b},
+    {"rr", &ft_rotate_rr},
 };
 
 #endif

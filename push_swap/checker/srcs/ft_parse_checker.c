@@ -28,6 +28,23 @@ static void	ft_stackdel(t_stack *stack_a_start)
     stack_a_start = 0;
 }
 
+static void	ft_operdel(t_oper *oper)
+{
+    t_oper *list1;
+    t_oper *list2;
+
+    list1 = oper;
+    if (oper == 0)
+        return ;
+    while (list1) {
+        list2 = list1;
+        list1 = list1->next;
+        ft_strdel(&(list2->instruction));
+        free(list2);
+    }
+    oper = 0;
+}
+
 static void     ft_errors_checker(char **ptr, t_stack *stack_a_start)
 {
     int     i;
@@ -69,4 +86,16 @@ void        ft_add_input(char *argv_i, t_stack **stack_a_beg, t_stack **stack_a_
         ft_add_stackend(new_stacka, stack_a_beg, stack_a_end);
         j++;
     }
+}
+
+void        ft_clear_all(char *line, t_oper **oper_start, t_stack **stack_a)
+{
+    ft_stackdel(*stack_a);
+    ft_strdel(&line);
+    ft_operdel(*oper_start);
+    stack_a = 0;
+    line = 0;
+    oper_start = 0;
+    ft_dprintf(2, "Error\n");
+    exit(EXIT_SUCCESS);
 }

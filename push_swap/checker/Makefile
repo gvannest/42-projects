@@ -32,9 +32,12 @@ INC_PATH = includes\
 SRC_NAME = \
 		   checker.c \
 		   ft_parse_checker.c \
-		   list_operations.c \
+		   liststack_operations.c \
+		   listoper_operations.c \
 		   ft_swap.c \
-		   ft_push.c
+		   ft_push.c \
+		   ft_print_stack.c \
+		   ft_rotate.c
 
 
 OBJ_NAME = $(SRC_NAME:.c=.o)

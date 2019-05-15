@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push.c                                          :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,27 +12,22 @@
 
 #include "checker.h"
 
-static void        ft_push(t_stack **stack_from, t_stack **stack_to, t_stack **stack_to_end)
+void            ft_print_stacks(t_stack* stack)
 {
-    t_stack *tmp;
-
-    if (!stack_from || !(*stack_from))
-        return;
-    else
+    while (stack)
     {
-        tmp = (*stack_from);
-        *stack_from = (*stack_from)->next;
-        tmp->next = 0;
-        ft_add_stackbeg(tmp, stack_to, stack_to_end);
+        ft_printf("%d\n", stack->nbr);
+        stack = stack->next;
     }
+    ft_putchar('\n');
 }
 
-void                ft_push_a(t_stack **tab_stack)
+void            ft_print_oper(t_oper* oper)
 {
-    ft_push(&tab_stack[2], &tab_stack[0], &tab_stack[1]);
-}
-
-void                ft_push_b(t_stack **tab_stack)
-{
-    ft_push(&tab_stack[0], &tab_stack[2], &tab_stack[3]);
+    while (oper)
+    {
+        ft_printf("%s\n", oper->instruction);
+        oper = oper->next;
+    }
+    ft_putchar('\n');
 }

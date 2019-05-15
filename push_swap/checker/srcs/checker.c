@@ -13,47 +13,62 @@
 #include "checker.h"
 #include "tabptrope.h"
 
-void            ft_print_stacks(t_stack* stack)
-{
-    while (stack)
-    {
-        ft_printf("%d\n", stack->nbr);
-        stack = stack->next;
-    }
-    ft_putchar('\n');
-}
-
-static void     ft_parse_stack(t_stack **stack_a_beg, t_stack **stack_a_end,
-                int argc, char **argv)
+static void     ft_parse_stack(t_stack **tab_stack, int argc, char **argv)
 {
     int i;
 
     i = 1;
     while (i < argc)
     {
-        ft_add_input(argv[i], stack_a_beg, stack_a_end);
+        ft_add_input(argv[i], &tab_stack[0], &tab_stack[1]);
         i++;
     }
 }
 
-static void     ft_apply_operations(t_stack **stack_a, t_stack **stack_b, char list_op[4])
+static void     ft_parse_oper(t_oper **oper_start, t_stack **stack_a)
+{
+    char    *line;
+    t_oper  *new_oper;
+    int     i;
+    short   found;
+
+    get_next_line(0, &line);
+    while (*line)
+    {
+        i = 0;
+        found = 0;
+        while (i < SIZE_OPE)
+        {
+            if (!ft_strcmp(line, tabope[i].ope))
+                found += 1;
+            i++;
+        }
+        if (!found)
+            ft_clear_all(line, oper_start, stack_a);
+        new_oper = ft_opernew(line);
+        ft_add_oper(new_oper, oper_start);
+        line = 0;
+        get_next_line(0, &line);
+    }
+}
+
+static void     ft_apply_operations(t_stack **tab_stack, t_oper *oper)
 {
     int i;
 
-    i = 0;
-
-    while (i < 5)
+    while (oper)
     {
-        if (!ft_strcmp(list_op, tabope[i].ope))
-        {
-            tabope[i].ft_ps_ope(stack_a, stack_b);
+        i = 0;
+        while (i < SIZE_OPE) {
+            if (!ft_strcmp(oper->instruction, tabope[i].ope))
+                tabope[i].ft_ps_ope(tab_stack);
+            i++;
         }
-        i++;
+        oper = oper->next;
     }
 }
 
-
-int             main(int argc, char **argv)
+static t_stack  **ft_initialize_stacks(t_stack** tab_stack)
 {
     t_stack     *stack_a_start;
     t_stack     *stack_a_end;
@@ -65,27 +80,47 @@ int             main(int argc, char **argv)
     stack_b_start = 0;
     stack_b_end = 0;
 
+    tab_stack[0] = stack_a_start;
+    tab_stack[1] = stack_a_end;
+    tab_stack[2] = stack_b_start;
+    tab_stack[3] = stack_b_end;
+    tab_stack[4] = 0;
+
+    return (tab_stack);
+}
+
+int             main(int argc, char **argv)
+{
+    t_stack         *tab_stack[5];
+    t_oper          *oper;
+
+    oper = 0;
+    ft_initialize_stacks(tab_stack);
     if (argc < 2)
         ft_dprintf(2, "Error\n");
     else
-        ft_parse_stack(&stack_a_start, &stack_a_end, argc, argv);
-
+    {
+        ft_parse_stack(tab_stack, argc, argv);
+        ft_parse_oper(&oper, &tab_stack[0]);
+    }
+    ft_printf("======================\n");
+    ft_printf("Operations : \n");
+    ft_print_oper(oper);
     ft_printf("======================\n");
     ft_printf("Stack_A before : \n");
-    ft_print_stacks(stack_a_start);
+    ft_print_stacks(tab_stack[0]);
     ft_printf("======================\n");
     ft_printf("Stack_B before: \n");
-    ft_print_stacks(stack_b_start);
+    ft_print_stacks(tab_stack[2]);
 
-    char operation[4] = "pb";
-    ft_apply_operations(&stack_a_start, &stack_b_start, operation);
+    ft_apply_operations(tab_stack, oper);
 
     ft_printf("======================\n");
     ft_printf("Stack_A after : \n");
-    ft_print_stacks(stack_a_start);
+    ft_print_stacks(tab_stack[0]);
     ft_printf("======================\n");
     ft_printf("Stack_B after: \n");
-    ft_print_stacks(stack_b_start);
+    ft_print_stacks(tab_stack[2]);
 
     return (0);
 }
