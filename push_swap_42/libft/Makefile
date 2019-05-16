@@ -48,7 +48,7 @@ SRC_NAME = ft_putnbr.c ft_putchar.c ft_strlen.c ft_putstr.c ft_strdup.c ft_strcp
 		   ft_types.c ft_typec.c ft_reinit_struct.c ft_typeo.c ft_typex.c \
 		   ft_typep.c ft_typepercent.c ft_type_unicodec.c ft_wcharconv.c \
 		   ft_type_unicodes.c ft_typeb.c ft_couleur.c ft_sqrt_heron.c \
-		   ft_max.c ft_dprintf.c
+		   ft_max.c ft_dprintf.c ft_atoi_int.c
 
 # OBJECTS
 OBJ_NAME = $(SRC_NAME:.c=.o)

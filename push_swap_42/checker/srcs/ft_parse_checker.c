@@ -25,10 +25,23 @@ void        ft_check_dup(int new_nbr, t_stack **tab_stack, char **ptr_argv)
     }
 }
 
+int         ft_check_argvj(char *argvj)
+{
+    int i;
+
+    i = 0;
+    while (argvj[i])
+    {
+        if (!ft_isdigit(argvj[i]))
+            return (0);
+        i++;
+    }
+    return (1);
+}
+
 void        ft_add_input(char *argv_i, t_stack **tab_stack)
 {
     int     j;
-    int     i;
     int     new_nbr;
     char    **ptr_argv;
     t_stack *new_stacka;
@@ -37,14 +50,11 @@ void        ft_add_input(char *argv_i, t_stack **tab_stack)
     ptr_argv = ft_strsplit(argv_i, ' ');
     while (ptr_argv[j])
     {
-        i = 0;
-        while (ptr_argv[j][i])
-        {
-            if (!ft_isdigit(ptr_argv[j][i]))
-                ft_errors(0, ptr_argv, 0, tab_stack);
-            i++;
-        }
-        new_nbr = ft_atoi(ptr_argv[j]);
+        if (!ft_check_argvj(ptr_argv[j]))
+            ft_errors(0, ptr_argv, 0, tab_stack);
+        new_nbr = ft_atoi_int(ptr_argv[j]);
+        if (!new_nbr && ft_strcmp(ptr_argv[j], "0"))
+            ft_errors(0, ptr_argv, 0, tab_stack);
         ft_check_dup(new_nbr, tab_stack, ptr_argv);
         new_stacka = ft_stacknew(new_nbr);
         ft_add_stackend(new_stacka, &tab_stack[0], &tab_stack[1]);

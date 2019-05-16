@@ -26,34 +26,6 @@ static void     ft_parse_stack(t_stack **tab_stack, int argc, char **argv)
     }
 }
 
-//static void     ft_parse_oper(t_oper **oper_start, t_stack **tab_stack)
-//{
-//    char    *line;
-//    t_oper  *new_oper;
-//    int     i;
-//    short   found;
-//
-//    get_next_line(0, &line);
-//    while (*line)
-//    {
-//        i = 0;
-//        found = 0;
-//        while (i < SIZE_OPE)
-//        {
-//            if (!ft_strcmp(line, tabope[i].ope))
-//                found += 1;
-//            i++;
-//        }
-//        if (!found)
-//            ft_errors(line, 0, *oper_start, tab_stack);
-//        new_oper = ft_opernew(line);
-//        ft_add_oper(new_oper, oper_start);
-//        line = 0;
-//        get_next_line(0, &line);
-//    }
-//    ft_strdel(&line);
-//}
-
 //static void     ft_apply_operations(t_stack **tab_stack, t_oper *oper)
 //{
 //    int i;
@@ -104,10 +76,7 @@ int             main(int argc, char **argv)
         return (0);
     }
     else
-    {
         ft_parse_stack(tab_stack, argc, argv);
-//        ft_parse_oper(&oper, &tab_stack[0]);
-    }
 
     ft_printf("Stack_A before : \n");
     ft_print_stacks(tab_stack[0]);

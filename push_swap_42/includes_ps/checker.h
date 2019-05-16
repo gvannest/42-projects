@@ -14,6 +14,7 @@
 # define CHECKER_H
 
 # include <stdlib.h>
+# include <limits.h>
 # include "libft.h"
 
 typedef struct      s_stack

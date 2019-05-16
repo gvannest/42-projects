@@ -23,7 +23,9 @@ NAME = push_swap
 
 # PATHS
 SRC_PATH = ./srcs/
+SRC_PATH_CH = ../checker/srcs/
 OBJ_PATH = ./objs/
+OBJ_PATH_CH = ./objs/
 LIBFT_PATH = ../libft/
 INC_PATH = ../includes_ps\
     ../libft/includes/ \
@@ -31,25 +33,29 @@ INC_PATH = ../includes_ps\
 # SOURCES
 SRC_NAME = \
     push_swap.c \
-    ../../checker/srcs/ft_parse_checker.c \
-    ../../checker/srcs/ft_push.c \
-    ../../checker/srcs/ft_revrot.c \
-    ../../checker/srcs/ft_rotate.c \
-    ../../checker/srcs/ft_swap.c \
-    ../../checker/srcs/liststack_operations.c \
-    ../../checker/srcs/ft_clear_error.c \
-    ../../checker/srcs/ft_check_sort.c \
-    ../../checker/srcs/ft_print_stack.c \
+
+SRC_NAME_CH = \
+    ft_parse_checker.c \
+    ft_push.c \
+    ft_revrot.c \
+    ft_rotate.c \
+    ft_swap.c \
+    liststack_operations.c \
+    ft_clear_error.c \
+    ft_check_sort.c \
+    ft_print_stack.c \
 
 
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
+OBJ_NAME_CH = $(SRC_NAME_CH:.c=.o)
 
 
 # PREFIXES
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
+SRC_CH = $(addprefix $(SRC_PATH_CH),$(SRC_NAME_CH))
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
-
+OBJ_CH = $(addprefix $(OBJ_PATH_CH),$(OBJ_NAME_CH))
 
 # FLAGS
 CPPFLAGS = -I./includes/ -I../libft/includes
@@ -90,14 +96,18 @@ all: libftcomp $(OBJ_PATH) $(NAME) Makefile
 libftcomp:
 	@make all -C $(LIBFT_PATH)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(OBJ_CH)
 	@echo -e "--$(LOG_CLEAR)$(LOG_MAGENTA)$(NAME)$(LOG_NOCOLOR)....................... $(LOG_ORANGE)assembling$(LOG_NOCOLOR)$(LOG_UP)"
-	@$(CC) $(CFLAGS) $(ADD_FLAGS) $(LIBFT) $(OBJ) -o $@
+	@$(CC) $(CFLAGS) $(ADD_FLAGS) $(LIBFT) $(OBJ) $(OBJ_CH) -o $@
 	@echo -e "--$(LOG_CLEAR)$(LOG_CYAN)$(NAME)$(LOG_NOCOLOR) compiled................. $(LOG_GREEN)✓$(LOG_NOCOLOR)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@echo -e "--$(LOG_CLEAR)$(LOG_MAGENTA)$(NAME)$(LOG_NOCOLOR)........................ $(LOG_YELLOW)$<$(LOG_NOCOLOR)$(LOG_UP)"
-	@$(CC) $(CFLAGS) $(CPPFLAGS) $(ADDFLAGS) -c -o $@ $^
+	@$(CC) $(CFLAGS) $(CPPFLAGS) $(ADDFLAGS) -c -o $@ $<
+
+$(OBJ_PATH_CH)%.o: $(SRC_PATH_CH)%.c
+	@echo -e "--$(LOG_CLEAR)$(LOG_MAGENTA)$(NAME)$(LOG_NOCOLOR)........................ $(LOG_YELLOW)$<$(LOG_NOCOLOR)$(LOG_UP)"
+	@$(CC) $(CFLAGS) $(CPPFLAGS) $(ADDFLAGS) -c -o $@ $<
 
 $(OBJ_PATH):
 	@echo -e "$(LOG_CLEAR)$(LOG_BLUE)build $(NAME)$(LOG_NOCOLOR)"

@@ -130,6 +130,6 @@ int             main(int argc, char **argv)
     return (0);
 }
 
-__attribute__ ((destructor)) void ft_des() {
-    while (1);
-}
+//__attribute__ ((destructor)) void ft_des() {
+//    while (1);
+//}
