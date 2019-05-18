@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "../../includes_ps/push_swap.h"
-#include "../../includes_ps/checker.h"
-#include "../../includes_ps/tabptrope.h"
 
 static void     ft_parse_stack(t_stack **tab_stack, int argc, char **argv)
 {
@@ -25,22 +23,6 @@ static void     ft_parse_stack(t_stack **tab_stack, int argc, char **argv)
         i++;
     }
 }
-
-//static void     ft_apply_operations(t_stack **tab_stack, t_oper *oper)
-//{
-//    int i;
-//
-//    while (oper)
-//    {
-//        i = 0;
-//        while (i < SIZE_OPE) {
-//            if (!ft_strcmp(oper->instruction, tabope[i].ope))
-//                tabope[i].ft_ps_ope(tab_stack);
-//            i++;
-//        }
-//        oper = oper->next;
-//    }
-//}
 
 static t_stack  **ft_initialize_stacks(t_stack** tab_stack)
 {
@@ -66,34 +48,32 @@ static t_stack  **ft_initialize_stacks(t_stack** tab_stack)
 int             main(int argc, char **argv)
 {
     t_stack         *tab_stack[5];
-//    t_oper          *oper;
 
-//    oper = 0;
     ft_initialize_stacks(tab_stack);
     if (argc < 2)
     {
         ft_dprintf(2, "Error\n");
         return (0);
     }
-    else
-        ft_parse_stack(tab_stack, argc, argv);
+    ft_parse_stack(tab_stack, argc, argv);
 
-    ft_printf("Stack_A before : \n");
-    ft_print_stacks(tab_stack[0]);
-    ft_printf("======================\n");
-    ft_printf("Stack_B before: \n");
-    ft_print_stacks(tab_stack[2]);
 
-//    ft_apply_operations(tab_stack, oper);
+//    ft_printf("Stack_A before : \n");
+//    ft_print_stacks(tab_stack[0]);
+//    ft_printf("======================\n");
+//    ft_printf("Stack_B before: \n");
+//    ft_print_stacks(tab_stack[2]);
 
-    ft_printf("======================\n");
-    ft_printf("Stack_A after : \n");
-    ft_print_stacks(tab_stack[0]);
-    ft_printf("======================\n");
-    ft_printf("Stack_B after: \n");
-    ft_print_stacks(tab_stack[2]);
+    ft_algorithm(tab_stack);
 
-    ft_check_sort(tab_stack);
+//    ft_printf("======================\n");
+//    ft_printf("Stack_A after : \n");
+//    ft_print_stacks(tab_stack[0]);
+//    ft_printf("======================\n");
+//    ft_printf("Stack_B after: \n");
+//    ft_print_stacks(tab_stack[2]);
+//
+//    ft_check_sort(tab_stack);
 
 //    ft_clear_all(0, 0, oper, tab_stack);
 

@@ -25,6 +25,11 @@ void        ft_check_sort(t_stack **tab_stack)
         ft_printf("KO\n");
         return ;
     }
+    if (ft_stacklen(tab_stack[0]) == 1)
+    {
+        ft_printf("OK\n");
+        return ;
+    }
     while (tmp)
     {
         curr = tmp->nbr;
