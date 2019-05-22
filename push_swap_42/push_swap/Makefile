@@ -35,7 +35,7 @@ SRC_NAME = \
     push_swap.c \
     ft_algorithm.c \
     ft_algorithm_2.c \
-    ft_utils.c
+    ft_sort_tab.c
 
 SRC_NAME_CH = \
     ft_parse_checker.c \

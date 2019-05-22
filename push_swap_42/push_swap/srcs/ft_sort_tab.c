@@ -12,11 +12,42 @@
 
 #include "../../includes_ps/push_swap.h"
 
-void        ft_clear_seen(t_stack *stack_a)
+int         ft_partition(int *tab, int start, int end)
 {
-    while (stack_a)
+    int pivot;
+    int p_index;
+
+    pivot = tab[end];
+    p_index = start;
+
+
+
+}
+
+
+void        ft_quicksort(int *tab, int start, int end)
+{
+    int p_index;
+
+    p_index = 0;
+    if (start < end)
+        return;
+    p_index = ft_partition(tab, start, end);
+}
+
+
+void        ft_sort_tab(t_stack *stack_a, t_algo *algo)
+{
+    int i;
+    int len;
+
+    i = 0;
+    len = ft_stacklen(stack_a);
+    while (i < len)
     {
-        stack_a->seen = 0;
+        algo->tab_sorted[i] = stack_a->nbr;
         stack_a = stack_a->next;
+        i++;
     }
+    ft_quicksort(algo->tab_sorted, 0, len - 1);
 }
