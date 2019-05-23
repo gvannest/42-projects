@@ -66,12 +66,12 @@ int             main(int argc, char **argv)
 
     ft_algorithm(tab_stack);
 
-//    ft_printf("======================\n");
-//    ft_printf("Stack_A after : \n");
-//    ft_print_stacks(tab_stack[0]);
-//    ft_printf("======================\n");
-//    ft_printf("Stack_B after: \n");
-//    ft_print_stacks(tab_stack[2]);
+    ft_printf("======================\n");
+    ft_printf("Stack_A after : \n");
+    ft_print_stacks(tab_stack[0]);
+    ft_printf("======================\n");
+    ft_printf("Stack_B after: \n");
+    ft_print_stacks(tab_stack[2]);
 //
 //    ft_check_sort(tab_stack);
 

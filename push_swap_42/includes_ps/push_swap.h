@@ -24,11 +24,14 @@ typedef struct  s_algo
     char        flag;
     t_stack     *current_pivot;
     int         *tab_sorted;
+    int         len_tab;
 }               t_algo;
 
 void            ft_algorithm(t_stack **tab_stack);
-char            *ft_choose_operation(t_stack **tab_stack, t_algo *algo);
+void            ft_sorting_algo(t_stack **tab_stack, t_algo *algo, int median, char flag);
 void            ft_sort_tab(t_stack *stack_a, t_algo *algo);
+int             ft_is_sorted(t_stack **tab_stack);
+void            ft_apply_operations(t_stack **tab_stack, char *ope);
 
 
 #endif
