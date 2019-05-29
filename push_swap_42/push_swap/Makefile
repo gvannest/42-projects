@@ -12,7 +12,7 @@
 
 # COMPILATION
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 ADDFLAGS =
 
 # DEFAULT RULE
@@ -35,7 +35,8 @@ SRC_NAME = \
     push_swap.c \
     ft_algorithm.c \
     ft_quicksort_stack.c \
-    ft_sort_tab.c
+    ft_sort_tab.c \
+    ft_sortmerge.c
 
 SRC_NAME_CH = \
     ft_parse_checker.c \

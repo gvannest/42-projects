@@ -12,7 +12,7 @@
 
 #include "../../includes_ps/checker.h"
 
-static void        ft_push(t_stack **stack_from, t_stack **stack_to, t_stack **stack_to_end)
+static void        ft_push(t_stack **stack_from, t_stack **stack_to, t_stack **stack_to_end, char *ope)
 {
     t_stack *tmp;
 
@@ -24,15 +24,16 @@ static void        ft_push(t_stack **stack_from, t_stack **stack_to, t_stack **s
         *stack_from = (*stack_from)->next;
         tmp->next = 0;
         ft_add_stackbeg(tmp, stack_to, stack_to_end);
+        ft_printf("%s\n", ope);
     }
 }
 
 void                ft_push_a(t_stack **tab_stack)
 {
-    ft_push(&tab_stack[2], &tab_stack[0], &tab_stack[1]);
+    ft_push(&tab_stack[2], &tab_stack[0], &tab_stack[1], "pa");
 }
 
 void                ft_push_b(t_stack **tab_stack)
 {
-    ft_push(&tab_stack[0], &tab_stack[2], &tab_stack[3]);
+    ft_push(&tab_stack[0], &tab_stack[2], &tab_stack[3], "pb");
 }

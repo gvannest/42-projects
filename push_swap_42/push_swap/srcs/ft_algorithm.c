@@ -13,8 +13,7 @@
 #include "../../includes_ps/push_swap.h"
 # include "../../includes_ps/tabptrope.h"
 
-
-int      ft_is_sorted(t_stack **tab_stack)
+int      ft_is_sorted(t_stack *stack)
 {
     t_stack *tmp;
     int     prev;
@@ -22,14 +21,12 @@ int      ft_is_sorted(t_stack **tab_stack)
 
     prev = 0;
     curr = 0;
-    if (ft_stacklen(tab_stack[2]))
-        return (0);
-    if (ft_stacklen(tab_stack[0]) == 1)
+    if (ft_stacklen(stack, 0) == 1)
         return (1);
-    if (tab_stack[0])
+    if (stack)
     {
-        prev = tab_stack[0]->nbr;
-        tmp = tab_stack[0]->next;
+        prev = stack->nbr;
+        tmp = stack->next;
         while (tmp) {
             curr = tmp->nbr;
             if (curr < prev)
@@ -57,14 +54,16 @@ int i;
 void            ft_algorithm(t_stack **tab_stack)
 {
     t_algo  algo;
-    int     median;
 
     algo.flag = 0;
-    algo.current_pivot = 0;
-    if(!(algo.tab_sorted = (int*)malloc(sizeof(int) * ft_stacklen(tab_stack[0]))))
+    if(!(algo.tab_sorted = (int*)malloc(sizeof(int) * ft_stacklen(tab_stack[0], 0))))
         exit(EXIT_FAILURE);
-    ft_bzero(algo.tab_sorted, sizeof(int) * ft_stacklen(tab_stack[0]));
+    ft_bzero(algo.tab_sorted, sizeof(int) * ft_stacklen(tab_stack[0], 0));
     ft_sort_tab(tab_stack[0], &algo);
-    median = algo.tab_sorted[(algo.len_tab - 1) / 2];
-    ft_sorting_algo(tab_stack, &algo, median, 'a');
+    if(!(algo.medians = (int*)ft_memalloc(sizeof(int) * algo.len_tab)))
+        exit(EXIT_FAILURE);
+    algo.curr_median_idx = -1;
+    algo.new_stacka_end = NULL;
+    ft_sorting_algo(tab_stack, &algo);
+    //free algo
 }

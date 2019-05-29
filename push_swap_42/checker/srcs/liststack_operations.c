@@ -12,14 +12,14 @@
 
 #include "../../includes_ps/checker.h"
 
-int		ft_stacklen(t_stack *list)
+int		ft_stacklen(t_stack *list, t_stack *stop)
 {
     int k;
 
     k = 0;
     if (list == 0)
         return (0);
-    while (list)
+    while (list != stop)
     {
         k++;
         list = list->next;

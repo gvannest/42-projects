@@ -20,12 +20,12 @@ void        ft_check_sort(t_stack **tab_stack)
 
     prev = tab_stack[0]->nbr;
     tmp = tab_stack[0]->next;
-    if (ft_stacklen(tab_stack[2]))
+    if (ft_stacklen(tab_stack[2], 0))
     {
         ft_printf("KO\n");
         return ;
     }
-    if (ft_stacklen(tab_stack[0]) == 1)
+    if (ft_stacklen(tab_stack[0], 0) == 1)
     {
         ft_printf("OK\n");
         return ;

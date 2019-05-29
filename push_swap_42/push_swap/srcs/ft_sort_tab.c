@@ -64,7 +64,7 @@ void                ft_sort_tab(t_stack *stack_a, t_algo *algo)
     int len;
 
     i = 0;
-    len = ft_stacklen(stack_a);
+    len = ft_stacklen(stack_a, 0);
     while (i < len)
     {
         algo->tab_sorted[i] = stack_a->nbr;

@@ -36,7 +36,7 @@ void                ft_check_dup(int new_nbr, t_stack **tab_stack, char **ptr_ar
 void	            ft_add_stackend(t_stack *new, t_stack **stack_start, t_stack **stack_end);
 void	            ft_add_stackbeg(t_stack *new, t_stack **stack_start, t_stack **stack_end);
 t_stack	            *ft_stacknew(int n);
-int		            ft_stacklen(t_stack *list);
+int		            ft_stacklen(t_stack *list, t_stack *stop);
 t_oper	            *ft_opernew(char *line);
 void	            ft_add_oper(t_oper *new, t_oper **oper_start);
 

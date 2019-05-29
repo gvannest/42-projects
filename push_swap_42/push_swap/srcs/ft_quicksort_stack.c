@@ -12,28 +12,27 @@
 
 #include "../../includes_ps/push_swap.h"
 
-static int      ft_check_further(t_stack **tab_stack, int median, char flag)
+static int      ft_check_further(t_stack **tab_stack, t_algo *algo)
 {
     t_stack *stack;
 
     stack = 0;
-    if (flag == 'a')
+    if (algo->flag == 'a')
     {
         stack = tab_stack[0];
-        while (stack)
+        while (stack != algo->new_stacka_end)
         {
-            if (stack->nbr < median)
+            if (stack->nbr <= algo->medians[algo->curr_median_idx])
                 return (1);
             stack = stack->next;
-
         }
     }
-    else if (flag == 'b')
+    else if (algo->flag == 'b')
     {
         stack = tab_stack[2];
         while (stack)
         {
-            if (stack->nbr > median)
+            if (stack->nbr >= algo->medians[algo->curr_median_idx])
                 return (1);
             stack = stack->next;
         }
@@ -41,96 +40,114 @@ static int      ft_check_further(t_stack **tab_stack, int median, char flag)
     return (0);
 }
 
-int             ft_new_median(int median, char flag, t_algo *algo)
+void             ft_new_median(t_algo *algo)
 {
     int i;
+    int new_med;
 
     i = 0;
-    while (algo->tab_sorted[i] != median)
-        i++;
-    if (flag == 'b')
-        return algo->tab_sorted[((algo->len_tab) - 1 - i) / 2];
-    else
-        return algo->tab_sorted[i / 2];
-}
-
-static void            ft_workona(t_stack **tab_stack, int median)
-{
-    ft_printf("J'entre dans workona\n");
-    ft_printf("%d\n", median);
-    ft_printf("Stack a :\n");
-    ft_print_stacks(tab_stack[0]);
-    ft_printf("Stack b :\n");
-    ft_print_stacks(tab_stack[2]);
-
-    while (tab_stack[0]->nbr > median)
-        ft_apply_operations(tab_stack, "ra");
-    if (tab_stack[0]->nbr == median)
+    if (algo->curr_median_idx == -1)
     {
-        ft_apply_operations(tab_stack, "pb");
-        ft_apply_operations(tab_stack, "rb");
-    }
-    else
-        ft_apply_operations(tab_stack, "pb");
-}
-
-static void            ft_workonb(t_stack **tab_stack, int median)
-{
-    ft_printf("J'entre dans workonb\n");
-    ft_printf("%d\n", median);
-    ft_printf("Stack a :\n");
-    ft_print_stacks(tab_stack[0]);
-    ft_printf("Stack b :\n");
-    ft_print_stacks(tab_stack[2]);
-
-    while (tab_stack[2]->nbr < median)
-        ft_apply_operations(tab_stack, "rb");
-    if (tab_stack[2]->nbr == median)
-    {
-        ft_apply_operations(tab_stack, "pa");
-        ft_apply_operations(tab_stack, "ra");
-    }
-    else
-        ft_apply_operations(tab_stack, "pa");
-}
-
-void            ft_sorting_algo(t_stack **tab_stack, t_algo *algo, int median, char flag)
-{
-    char c = 0;
-
-    ft_printf("%c\n", flag);
-    ft_printf("%d\n", median);
-    ft_printf("Stack a :\n");
-    ft_print_stacks(tab_stack[0]);
-    ft_printf("Stack b :\n");
-    ft_print_stacks(tab_stack[2]);
-
-    if (ft_is_sorted(tab_stack)) {
+        new_med = algo->tab_sorted[(algo->len_tab - 1) / 2];
+        algo->medians[0] = new_med;
+        algo->curr_median_idx = 0;
         return;
     }
-    while (ft_check_further(tab_stack, median, flag))
+    while (algo->tab_sorted[i] != algo->medians[algo->curr_median_idx])
+        i++;
+    new_med = algo->tab_sorted[i + ((algo->len_tab) - 1 - i) / 2];
+    algo->medians[algo->curr_median_idx + 1] = new_med;
+    (algo->curr_median_idx)++;
+}
+
+static void            ft_workona(t_stack **tab_stack, t_algo *algo)
+{
+    int median;
+    int count_ra;
+
+    count_ra = 0;
+    median = algo->medians[algo->curr_median_idx];
+    while (ft_check_further(tab_stack, algo))
     {
-        ft_printf("J'entre dans la boucle check_further\n");
-        scanf("%c", &c);
-        if (flag == 'a') {
-            ft_workona(tab_stack, median);
+        while (tab_stack[0]->nbr > median)
+        {
+            ft_apply_operations(tab_stack, "ra");
+            count_ra++;
         }
-        else {
-            ft_workonb(tab_stack, median);
+        if (tab_stack[0]->nbr == median)
+        {
+            ft_apply_operations(tab_stack, "pb");
+            ft_apply_operations(tab_stack, "rb");
         }
+        else
+            ft_apply_operations(tab_stack, "pb");
+
     }
-    if (flag == 'a' && ft_stacklen(tab_stack[2]))
-    {
-        ft_printf("J'entre dans la boucle passage au sorting de b\n");
-        scanf("%c", &c);
+    if (tab_stack[3]->nbr == median)
         ft_apply_operations(tab_stack, "rrb");
-        ft_sorting_algo(tab_stack, algo, ft_new_median(median, flag, algo), 'b');
-    }
-    else if (flag == 'b' && ft_stacklen(tab_stack[0]))
+    if (algo->new_stacka_end) // on reverse les ra que si on a deja fait un passage sur A, ce qui veut dire que le bas de a est trié
     {
-        ft_printf("J'entre dans la boucle passage au sorting de a\n");
-        scanf("%c", &c);
-        ft_apply_operations(tab_stack, "rra");
-        ft_sorting_algo(tab_stack, algo, ft_new_median(median, flag, algo), 'a');
+        while (count_ra)
+        {
+            ft_apply_operations(tab_stack, "rra");
+            count_ra--;
+        }
     }
+}
+
+static void            ft_workonb(t_stack **tab_stack, t_algo *algo)
+{
+    int median;
+    int count_rb;
+
+    count_rb = 0;
+    median = algo->medians[algo->curr_median_idx];
+    while (ft_check_further(tab_stack, algo))
+    {
+        while (tab_stack[2]->nbr < median)
+        {
+            ft_apply_operations(tab_stack, "rb");
+            count_rb++;
+        }
+        if (tab_stack[2]->nbr == median)
+        {
+            ft_apply_operations(tab_stack, "pa");
+            ft_apply_operations(tab_stack, "ra");
+        }
+        else
+            ft_apply_operations(tab_stack, "pa");
+
+    }
+    if (tab_stack[1]->nbr == median)
+        ft_apply_operations(tab_stack, "rra");
+    while (count_rb)
+    {
+        ft_apply_operations(tab_stack, "rrb");
+        count_rb--;
+    }
+}
+
+void            ft_sorting_algo(t_stack **tab_stack, t_algo *algo)
+{
+    if (ft_is_sorted(tab_stack[0]) && !ft_stacklen(tab_stack[2], 0))
+        return;
+    if (ft_stacklen(tab_stack[0], algo->new_stacka_end)) // si je n'ai pas de nouveau sur A je passe direct sur B
+    {
+        if (ft_stacklen(tab_stack[0], algo->new_stacka_end) <= 2) // si j'ai du nouveau et qu'il y a moins de 2 elements je trie
+            ft_sortmerge_stacka(tab_stack, algo);
+        else // s'il y a du nouveau et plus de 2 elements, je repars sur a
+        {
+            algo->flag = 'a';
+            ft_new_median(algo);
+            ft_workona(tab_stack, algo);
+            ft_sorting_algo(tab_stack, algo);
+        }
+    }
+    if (ft_stacklen(tab_stack[2], 0) > 2) {
+        algo->flag = 'b';
+        ft_new_median(algo);
+        ft_workonb(tab_stack, algo);
+        ft_sorting_algo(tab_stack, algo);
+    } else if (ft_stacklen(tab_stack[2], 0))
+        ft_sortmerge_stacka(tab_stack, algo);
 }
