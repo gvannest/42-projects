@@ -12,28 +12,46 @@
 
 #include "../../includes_ps/checker.h"
 
-static void        ft_push(t_stack **stack_from, t_stack **stack_to, t_stack **stack_to_end, char *ope)
+static int        ft_push(t_stack **stack_from, t_stack **stack_to, t_stack **stack_to_end)
 {
     t_stack *tmp;
 
     if (!stack_from || !(*stack_from))
-        return;
+        return (0);
     else
     {
         tmp = (*stack_from);
         *stack_from = (*stack_from)->next;
         tmp->next = 0;
         ft_add_stackbeg(tmp, stack_to, stack_to_end);
-        ft_printf("%s\n", ope);
+    }
+    return (1);
+}
+
+void                ft_push_a(t_stack **tab_stack, t_oper **oper_start)
+{
+    t_oper *new_oper;
+
+    if (ft_push(&tab_stack[2], &tab_stack[0], &tab_stack[1]))
+    {
+        if (oper_start)
+        {
+            new_oper = ft_opernew("pa");
+            ft_add_oper(new_oper, oper_start);
+        }
     }
 }
 
-void                ft_push_a(t_stack **tab_stack)
+void                ft_push_b(t_stack **tab_stack, t_oper **oper_start)
 {
-    ft_push(&tab_stack[2], &tab_stack[0], &tab_stack[1], "pa");
-}
+    t_oper *new_oper;
 
-void                ft_push_b(t_stack **tab_stack)
-{
-    ft_push(&tab_stack[0], &tab_stack[2], &tab_stack[3], "pb");
+    if (ft_push(&tab_stack[0], &tab_stack[2], &tab_stack[3]))
+    {
+        if (oper_start)
+        {
+            new_oper = ft_opernew("pb");
+            ft_add_oper(new_oper, oper_start);
+        }
+    }
 }

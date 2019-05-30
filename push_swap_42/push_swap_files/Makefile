@@ -45,6 +45,7 @@ SRC_NAME_CH = \
     ft_rotate.c \
     ft_swap.c \
     liststack_operations.c \
+    listoper_operations.c \
     ft_clear_error.c \
     ft_check_sort.c \
     ft_print_stack.c \

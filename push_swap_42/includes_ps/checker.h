@@ -40,17 +40,17 @@ int		            ft_stacklen(t_stack *list, t_stack *stop);
 t_oper	            *ft_opernew(char *line);
 void	            ft_add_oper(t_oper *new, t_oper **oper_start);
 
-void                ft_swap_a(t_stack **tab_stack);
-void                ft_swap_b(t_stack **tab_stack);
-void                ft_swap_ss(t_stack **tab_stack);
-void                ft_push_a(t_stack **tab_stack);
-void                ft_push_b(t_stack **tab_stack);
-void                ft_rotate_a(t_stack **tab_stack);
-void                ft_rotate_b(t_stack **tab_stack);
-void                ft_rotate_rr(t_stack **tab_stack);
-void                ft_revrot_a(t_stack **tab_stack);
-void                ft_revrot_b(t_stack **tab_stack);
-void                ft_revrot_rr(t_stack **tab_stack);
+void                ft_swap_a(t_stack **tab_stack, t_oper **oper_start);
+void                ft_swap_b(t_stack **tab_stack, t_oper **oper_start);
+void                ft_swap_ss(t_stack **tab_stack, t_oper **oper_start);
+void                ft_push_a(t_stack **tab_stack, t_oper **oper_start);
+void                ft_push_b(t_stack **tab_stack, t_oper **oper_start);
+void                ft_rotate_a(t_stack **tab_stack, t_oper **oper_start);
+void                ft_rotate_b(t_stack **tab_stack, t_oper **oper_start);
+void                ft_rotate_rr(t_stack **tab_stack, t_oper **oper_start);
+void                ft_revrot_a(t_stack **tab_stack, t_oper **oper_start);
+void                ft_revrot_b(t_stack **tab_stack, t_oper **oper_start);
+void                ft_revrot_rr(t_stack **tab_stack, t_oper **oper_start);
 
 void                ft_check_sort(t_stack **tab_stack);
 

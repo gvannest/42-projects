@@ -62,7 +62,7 @@ static void     ft_apply_operations(t_stack **tab_stack, t_oper *oper)
         i = 0;
         while (i < SIZE_OPE) {
             if (!ft_strcmp(oper->instruction, tabope[i].ope))
-                tabope[i].ft_ps_ope(tab_stack);
+                tabope[i].ft_ps_ope(tab_stack, 0);
             i++;
         }
         oper = oper->next;
@@ -107,19 +107,9 @@ int             main(int argc, char **argv)
         ft_parse_stack(tab_stack, argc, argv);
         ft_parse_oper(&oper, &tab_stack[0]);
     }
-
-    ft_printf("Stack_A before : \n");
-    ft_print_stacks(tab_stack[0]);
-    ft_printf("======================\n");
-    ft_printf("Stack_B before: \n");
-    ft_print_stacks(tab_stack[2]);
-
     ft_apply_operations(tab_stack, oper);
-
     ft_check_sort(tab_stack);
-
     ft_clear_all(0, 0, oper, tab_stack);
-
     return (0);
 }
 

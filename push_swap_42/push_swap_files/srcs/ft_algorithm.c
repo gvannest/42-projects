@@ -38,7 +38,7 @@ int      ft_is_sorted(t_stack *stack)
     return (1);
 }
 
-void     ft_apply_operations(t_stack **tab_stack, char *ope)
+void     ft_apply_operations(t_stack **tab_stack, t_oper **oper, char *ope)
 {
 int i;
 
@@ -46,12 +46,12 @@ int i;
     while (i < SIZE_OPE)
     {
         if (!ft_strcmp(ope, tabope[i].ope))
-            tabope[i].ft_ps_ope(tab_stack);
+            tabope[i].ft_ps_ope(tab_stack, oper);
         i++;
     }
 }
 
-void            ft_algorithm(t_stack **tab_stack)
+void            ft_algorithm(t_stack **tab_stack, t_oper **oper)
 {
     t_algo  algo;
 
@@ -64,6 +64,6 @@ void            ft_algorithm(t_stack **tab_stack)
         exit(EXIT_FAILURE);
     algo.curr_median_idx = -1;
     algo.new_stacka_end = NULL;
-    ft_sorting_algo(tab_stack, &algo);
+    ft_sorting_algo(tab_stack, &algo, oper);
     //free algo
 }

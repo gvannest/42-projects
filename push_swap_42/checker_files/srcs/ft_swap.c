@@ -12,35 +12,54 @@
 
 #include "../../includes_ps/checker.h"
 
-static void    ft_swap(t_stack **stack, char *ope)
+static int    ft_swap(t_stack **stack)
 {
     t_stack *tmp;
 
     if (!stack || !(*stack) || ft_stacklen(*stack, 0) == 0 ||
         ft_stacklen(*stack, 0) == 1)
-        return ;
+        return (0);
     else
     {
         tmp = (*stack)->next;
         (*stack)->next = tmp->next;
         tmp->next = *stack;
         *stack = tmp;
-        ope ? ft_printf("%s\n", ope) : 0;
+    }
+    return (1);
+}
+
+void            ft_swap_a(t_stack **tab_stack, t_oper **oper_start)
+{
+    t_oper *new_oper;
+
+    if (ft_swap(&tab_stack[0]))
+    {
+        if (oper_start)
+        {
+            new_oper = ft_opernew("sa");
+            ft_add_oper(new_oper, oper_start);
+        }
     }
 }
 
-void            ft_swap_a(t_stack **tab_stack)
+void            ft_swap_b(t_stack **tab_stack, t_oper **oper_start)
 {
-    ft_swap(&tab_stack[0], "sa");
+    t_oper *new_oper;
+
+    if (ft_swap(&tab_stack[2]))
+    {
+        if (oper_start)
+        {
+            new_oper = ft_opernew("sb");
+            ft_add_oper(new_oper, oper_start);
+        }
+    }
 }
 
-void            ft_swap_b(t_stack **tab_stack)
+void            ft_swap_ss(t_stack **tab_stack, t_oper **oper_start)
 {
-    ft_swap(&tab_stack[2], "sb");
-}
-
-void            ft_swap_ss(t_stack **tab_stack)
-{
-    ft_swap(&tab_stack[0], 0);
-    ft_swap(&tab_stack[2], "ss");
+    (void) oper_start;
+    ft_swap(&tab_stack[0]);
+    ft_swap(&tab_stack[2]);
 }

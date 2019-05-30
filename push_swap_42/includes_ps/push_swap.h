@@ -29,12 +29,12 @@ typedef struct  s_algo
     t_stack     *new_stacka_end;
 }               t_algo;
 
-void            ft_algorithm(t_stack **tab_stack);
-void            ft_sorting_algo(t_stack **tab_stack, t_algo *algo);
+void            ft_algorithm(t_stack **tab_stack, t_oper **oper);
+void            ft_sorting_algo(t_stack **tab_stack, t_algo *algo, t_oper **oper);
 void            ft_sort_tab(t_stack *stack_a, t_algo *algo);
 int             ft_is_sorted(t_stack *stack);
-void            ft_apply_operations(t_stack **tab_stack, char *ope);
-void            ft_sortmerge_stacka(t_stack **tab_stack, t_algo *algo);
-
+void            ft_apply_operations(t_stack **tab_stack, t_oper **oper, char *ope);
+void            ft_sortmerge_stacka(t_stack **tab_stack, t_algo *algo, t_oper **oper);
+void            ft_oper_toprint(t_oper *oper);
 
 #endif

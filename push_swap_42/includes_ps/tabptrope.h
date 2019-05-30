@@ -20,7 +20,7 @@
 typedef struct	        s_tabptrope
 {
     char		ope[4];
-    void        (*ft_ps_ope)(t_stack **);
+    void        (*ft_ps_ope)(t_stack **, t_oper **);
 }				        t_tabptrope;
 
 struct s_tabptrope		tabope[] =

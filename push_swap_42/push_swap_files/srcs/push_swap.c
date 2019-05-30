@@ -45,10 +45,48 @@ static t_stack  **ft_initialize_stacks(t_stack** tab_stack)
     return (tab_stack);
 }
 
+void            ft_oper_toprint(t_oper *oper)
+{
+    t_oper *tmp;
+    int     i;
+    char    tab1[7][4] = {"ra", "rb", "rra", "rrb", "sa", "sb"};
+    char    tab2[7][4] = {"rb", "ra", "rrb", "rra", "sb", "sa"};
+    char    tab3[7][4] = {"rr", "rr", "rrr", "rrr", "ss", "ss"};
+
+    while (oper)
+    {
+        tmp = (oper->next) ? oper->next : 0;
+        if (tmp)
+        {
+            i = 0;
+            while (i < 6)
+            {
+                if (!ft_strcmp(oper->instruction, tab1[i])
+                && !ft_strcmp(tmp->instruction, tab2[i]))
+                {
+                    ft_printf("%s\n", tab3[i]);
+                    oper = tmp->next;
+                    break;
+                }
+                i++;
+            }
+            (oper != tmp->next) ? ft_printf("%s\n", oper->instruction) : 0;
+            (oper != tmp->next) ? oper = oper->next : 0;
+        }
+        else
+        {
+            ft_printf("%s\n", oper->instruction);
+            oper = oper->next;
+        }
+    }
+}
+
 int             main(int argc, char **argv)
 {
     t_stack         *tab_stack[5];
+    t_oper          *oper;
 
+    oper = 0;
     ft_initialize_stacks(tab_stack);
     if (argc < 2)
     {
@@ -64,7 +102,9 @@ int             main(int argc, char **argv)
 //    ft_printf("Stack_B before: \n");
 //    ft_print_stacks(tab_stack[2]);
 
-    ft_algorithm(tab_stack);
+    ft_algorithm(tab_stack, &oper);
+
+    ft_oper_toprint(oper);
 
 //    ft_printf("======================\n");
 //    ft_printf("Stack_A after : \n");
