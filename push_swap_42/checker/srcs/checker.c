@@ -116,13 +116,6 @@ int             main(int argc, char **argv)
 
     ft_apply_operations(tab_stack, oper);
 
-    ft_printf("======================\n");
-    ft_printf("Stack_A after : \n");
-    ft_print_stacks(tab_stack[0]);
-    ft_printf("======================\n");
-    ft_printf("Stack_B after: \n");
-    ft_print_stacks(tab_stack[2]);
-
     ft_check_sort(tab_stack);
 
     ft_clear_all(0, 0, oper, tab_stack);

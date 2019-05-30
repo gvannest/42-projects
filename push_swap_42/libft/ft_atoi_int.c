@@ -17,6 +17,8 @@ static	int	ft_checklong(size_t n, int a)
 	if ((a == 1 && n > 9223372036854775807UL) ||
 		(a == -1 && n > 9223372036854775808UL))
 		return (a == 1 ? -1 : 0);
+	if ((a == -1 && n > 2147483648) || (a == 1 && n > 2147483647))
+	    return (0);
 	return (n * a);
 }
 
@@ -43,7 +45,5 @@ int			ft_atoi_int(const char *str)
 		n = n * 10 + str[i] - 48;
 		i++;
 	}
-	if (n > INT_MAX)
-	    return (0);
 	return (ft_checklong(n, a));
 }

@@ -32,9 +32,14 @@ int         ft_check_argvj(char *argvj)
     i = 0;
     while (argvj[i])
     {
-        if (!ft_isdigit(argvj[i]))
-            return (0);
-        i++;
+        if (argvj[0] == '-' || argvj[0] == '+')
+            i++;
+        else
+            {
+            if (!ft_isdigit(argvj[i]))
+                return (0);
+            i++;
+        }
     }
     return (1);
 }
