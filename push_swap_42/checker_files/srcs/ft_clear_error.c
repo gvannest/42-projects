@@ -72,3 +72,20 @@ void     ft_errors(char *line, char **ptr, t_oper *oper_start, t_stack **tab_sta
     ft_clear_all(line, ptr, oper_start, tab_stack);
     exit(EXIT_SUCCESS);
 }
+
+void	ft_clear_operations(t_oper *oper)
+{
+    t_oper *list1;
+    t_oper *list2;
+
+    list1 = oper;
+    if (oper == 0)
+        return ;
+    while (list1)
+    {
+        list2 = list1;
+        list1 = list1->next;
+        free(list2);
+    }
+    oper = 0;
+}

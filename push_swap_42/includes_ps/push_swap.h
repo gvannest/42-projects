@@ -20,7 +20,6 @@
 
 typedef struct  s_algo
 {
-    char        *ope;
     char        flag;
     int         *tab_sorted;
     int         len_tab;
@@ -36,5 +35,7 @@ int             ft_is_sorted(t_stack *stack);
 void            ft_apply_operations(t_stack **tab_stack, t_oper **oper, char *ope);
 void            ft_sortmerge_stacka(t_stack **tab_stack, t_algo *algo, t_oper **oper);
 void            ft_oper_toprint(t_oper *oper);
+void            ft_fixa(t_stack **tab_stack, t_algo *algo, t_oper **oper);
+void	        ft_clear_operations(t_oper *oper);
 
 #endif

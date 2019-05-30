@@ -89,7 +89,7 @@ static void            ft_workona(t_stack **tab_stack, t_algo *algo, t_oper **op
         ft_apply_operations(tab_stack, oper, "rrb");
     else if (ft_stacklen(tab_stack[2], 0) > 1 && tab_stack[2]->next->nbr > tab_stack[2]->nbr)
         ft_apply_operations(tab_stack, oper, "sb");
-    if (algo->new_stacka_end) // on reverse les ra que si on a deja fait un passage sur A, ce qui veut dire que le bas de a est trié
+    if (algo->new_stacka_end)
     {
         while (count_ra)
         {
@@ -135,22 +135,13 @@ static void            ft_workonb(t_stack **tab_stack, t_algo *algo, t_oper **op
 
 void            ft_sorting_algo(t_stack **tab_stack, t_algo *algo, t_oper **oper)
 {
-//    ft_printf("current median index ---> %d\n", algo->curr_median_idx);
-//    algo->curr_median_idx > -1 ? ft_printf("current median ---> %d\n", algo->medians[algo->curr_median_idx]) : 0;
-//    algo->new_stacka_end ? ft_printf("new_end a ---> %d\n", algo->new_stacka_end->nbr) : 0;
-//    ft_printf("Stack_A before : \n");
-//    ft_print_stacks(tab_stack[0]);
-//    ft_printf("======================\n");
-//    ft_printf("Stack_B before: \n");
-//    ft_print_stacks(tab_stack[2]);
-
     if (ft_is_sorted(tab_stack[0]) && !ft_stacklen(tab_stack[2], 0))
         return;
-    if (ft_stacklen(tab_stack[0], algo->new_stacka_end)) // si je n'ai pas de nouveau sur A je passe direct sur B
+    if (ft_stacklen(tab_stack[0], algo->new_stacka_end))
     {
-        if (ft_stacklen(tab_stack[0], algo->new_stacka_end) <= 2 || ft_is_sorted(tab_stack[0])) // si j'ai du nouveau et qu'il y a moins de 2 elements je trie
+        if (ft_stacklen(tab_stack[0], algo->new_stacka_end) <= 2)
             ft_sortmerge_stacka(tab_stack, algo, oper);
-        else // s'il y a du nouveau et plus de 2 elements, je repars sur a
+        else
         {
             algo->flag = 'a';
             ft_new_median(algo);

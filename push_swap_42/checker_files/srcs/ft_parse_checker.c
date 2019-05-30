@@ -53,6 +53,8 @@ void        ft_add_input(char *argv_i, t_stack **tab_stack)
 
     j = 0;
     ptr_argv = ft_strsplit(argv_i, ' ');
+    if (!ptr_argv[j])
+        ft_errors(0, ptr_argv, 0, tab_stack);
     while (ptr_argv[j])
     {
         if (!ft_check_argvj(ptr_argv[j]))

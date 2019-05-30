@@ -15,24 +15,20 @@
 void    ft_sortmerge_stacka(t_stack **tab_stack, t_algo *algo, t_oper **oper)
 {
     int i;
-    char b1;
-    char b2;
 
     i = 0;
-    b1 = (ft_stacklen(tab_stack[0], 0) > 1 && tab_stack[0]->next->nbr < tab_stack[0]->nbr);
-    b2 = (ft_stacklen(tab_stack[2], 0) > 1 && tab_stack[2]->next->nbr > tab_stack[2]->nbr);
-    if (b1)
+    if (ft_stacklen(tab_stack[0], 0) > 1 && tab_stack[0]->next->nbr < tab_stack[0]->nbr)
         ft_apply_operations(tab_stack, oper, "sa");
-    else if (b2)
+    else if (ft_stacklen(tab_stack[2], 0) > 1 && tab_stack[2]->next->nbr > tab_stack[2]->nbr)
         ft_apply_operations(tab_stack, oper, "sb");
-    if (algo->curr_median_idx < 1) //une seule median ou aucune soit que 4 nb sur a initialement
+    if (algo->curr_median_idx < 1)
     {
         while (ft_stacklen(tab_stack[2], 0))
             ft_apply_operations(tab_stack, oper, "pa");
     }
     else
     {
-        while (tab_stack[2]->nbr >= algo->medians[algo->curr_median_idx - 1]) // je push ceux superieurs a la moyenne precedente (la moyenne actuelle est au dessus du tas
+        while (tab_stack[2]->nbr >= algo->medians[algo->curr_median_idx - 1])
             ft_apply_operations(tab_stack, oper, "pa");
         algo->curr_median_idx -= 2;
         while (algo->tab_sorted[i] != algo->medians[algo->curr_median_idx + 1])

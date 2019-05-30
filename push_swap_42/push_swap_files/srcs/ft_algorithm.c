@@ -65,5 +65,6 @@ void            ft_algorithm(t_stack **tab_stack, t_oper **oper)
     algo.curr_median_idx = -1;
     algo.new_stacka_end = NULL;
     ft_sorting_algo(tab_stack, &algo, oper);
-    //free algo
+    free(algo.tab_sorted);
+    free(algo.medians);
 }

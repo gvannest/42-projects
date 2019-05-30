@@ -32,11 +32,12 @@ static void     ft_parse_oper(t_oper **oper_start, t_stack **tab_stack)
     int     i;
     short   found;
 
-    get_next_line(0, &line);
-    while (*line)
+    while (get_next_line(0, &line))
     {
         i = 0;
         found = 0;
+        if (!line[0])
+            break;
         while (i < SIZE_OPE)
         {
             if (!ft_strcmp(line, tabope[i].ope))
@@ -48,7 +49,6 @@ static void     ft_parse_oper(t_oper **oper_start, t_stack **tab_stack)
         new_oper = ft_opernew(line);
         ft_add_oper(new_oper, oper_start);
         line = 0;
-        get_next_line(0, &line);
     }
     ft_strdel(&line);
 }
@@ -107,12 +107,13 @@ int             main(int argc, char **argv)
         ft_parse_stack(tab_stack, argc, argv);
         ft_parse_oper(&oper, &tab_stack[0]);
     }
+    ft_print_stacks(tab_stack[0]);
+
     ft_apply_operations(tab_stack, oper);
+
     ft_check_sort(tab_stack);
+
     ft_clear_all(0, 0, oper, tab_stack);
+
     return (0);
 }
-
-//__attribute__ ((destructor)) void ft_des() {
-//    while (1);
-//}
