@@ -70,9 +70,8 @@ int				ft_type_di(t_lst *p, va_list ap)
 		ft_width(p, len, n);
 	if ((n >= 0 && (FLAGS & PLUS) && (!(FLAGS & ZERO) || PRECISION_ON)))
 		ft_buffer('+', p);
-	if (n < 0 && (!(FLAGS & ZERO) || PRECISION_ON))
-		ft_buffer('-', p);
-    (PRECISION_ON && n == 0 && PRECISION == 0 && itoa) ? ft_strdel(&itoa) : 1;
+	(n < 0 && (!(FLAGS & ZERO) || PRECISION_ON)) ? ft_buffer('-', p) : 0;
+	(PRECISION_ON && n == 0 && PRECISION == 0 && itoa) ? ft_strdel(&itoa) : 1;
 	if (PRECISION_ON && n == 0 && PRECISION == 0)
 		return (0);
 	ft_precision(p, itoa, len);

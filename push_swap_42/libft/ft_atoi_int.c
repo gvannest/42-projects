@@ -18,7 +18,7 @@ static	int	ft_checklong(size_t n, int a)
 		(a == -1 && n > 9223372036854775808UL))
 		return (a == 1 ? -1 : 0);
 	if ((a == -1 && n > 2147483648) || (a == 1 && n > 2147483647))
-	    return (0);
+		return (0);
 	return (n * a);
 }
 
