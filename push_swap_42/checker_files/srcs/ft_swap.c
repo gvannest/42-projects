@@ -12,19 +12,20 @@
 
 #include "../../includes_ps/checker.h"
 
-static int    ft_swap(t_stack **stack)
+static int    ft_swap(t_stack **stack_start, t_stack **stack_end)
 {
     t_stack *tmp;
 
-    if (!stack || !(*stack) || ft_stacklen(*stack, 0) == 0 ||
-        ft_stacklen(*stack, 0) == 1)
+    if (!stack_start || !(*stack_start) || ft_stacklen(*stack_start, 0) == 0 ||
+        ft_stacklen(*stack_start, 0) == 1)
         return (0);
     else
     {
-        tmp = (*stack)->next;
-        (*stack)->next = tmp->next;
-        tmp->next = *stack;
-        *stack = tmp;
+        tmp = (*stack_start)->next;
+        (*stack_start)->next = tmp->next;
+        tmp->next = *stack_start;
+        (tmp == *stack_end) ? *stack_end = *stack_start : 0;
+        *stack_start = tmp;
     }
     return (1);
 }
@@ -33,7 +34,7 @@ void            ft_swap_a(t_stack **tab_stack, t_oper **oper_start)
 {
     t_oper *new_oper;
 
-    if (ft_swap(&tab_stack[0]))
+    if (ft_swap(&tab_stack[0], &tab_stack[1]))
     {
         if (oper_start)
         {
@@ -47,7 +48,7 @@ void            ft_swap_b(t_stack **tab_stack, t_oper **oper_start)
 {
     t_oper *new_oper;
 
-    if (ft_swap(&tab_stack[2]))
+    if (ft_swap(&tab_stack[2], &tab_stack[3]))
     {
         if (oper_start)
         {
@@ -60,6 +61,6 @@ void            ft_swap_b(t_stack **tab_stack, t_oper **oper_start)
 void            ft_swap_ss(t_stack **tab_stack, t_oper **oper_start)
 {
     (void) oper_start;
-    ft_swap(&tab_stack[0]);
-    ft_swap(&tab_stack[2]);
+    ft_swap(&tab_stack[0], &tab_stack[1]);
+    ft_swap(&tab_stack[2], &tab_stack[3]);
 }

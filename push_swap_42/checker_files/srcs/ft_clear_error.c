@@ -65,6 +65,7 @@ void        ft_clear_all(char *line, char **ptr, t_oper *oper_start, t_stack **t
     }
     line ? ft_strdel(&line) : 0;
     oper_start ? ft_operdel(oper_start) : 0;
+
 }
 
 void     ft_errors(char *line, char **ptr, t_oper *oper_start, t_stack **tab_stack)

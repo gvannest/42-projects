@@ -95,7 +95,7 @@ int             main(int argc, char **argv)
     }
     ft_parse_stack(tab_stack, argc, argv);
     ft_algorithm(tab_stack, &oper);
-//    ft_oper_toprint(oper);
+    ft_oper_toprint(oper);
     ft_clear_operations(oper);
     ft_clear_all(0, 0, 0, tab_stack);
 

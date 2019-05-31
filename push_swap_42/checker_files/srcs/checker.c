@@ -32,6 +32,7 @@ static void     ft_parse_oper(t_oper **oper_start, t_stack **tab_stack)
     int     i;
     short   found;
 
+    line = 0;
     while (get_next_line(0, &line))
     {
         i = 0;
@@ -50,7 +51,7 @@ static void     ft_parse_oper(t_oper **oper_start, t_stack **tab_stack)
         ft_add_oper(new_oper, oper_start);
         line = 0;
     }
-    ft_strdel(&line);
+    (line && !line[0]) ? ft_strdel(&line) : 0;
 }
 
 static void     ft_apply_operations(t_stack **tab_stack, t_oper *oper)
