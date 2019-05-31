@@ -102,18 +102,10 @@ int             main(int argc, char **argv)
         ft_dprintf(2, "Error\n");
         return (0);
     }
-    else
-    {
-        ft_parse_stack(tab_stack, argc, argv);
-        ft_parse_oper(&oper, &tab_stack[0]);
-    }
-    ft_print_stacks(tab_stack[0]);
-
+    ft_parse_stack(tab_stack, argc, argv);
+    ft_parse_oper(&oper, &tab_stack[0]);
     ft_apply_operations(tab_stack, oper);
-
     ft_check_sort(tab_stack);
-
     ft_clear_all(0, 0, oper, tab_stack);
-
     return (0);
 }

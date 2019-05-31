@@ -124,6 +124,3 @@ fclean: clean
 .PHONY: re
 re: fclean all
 
-norme:
-	norminette $(SRC)
-	norminette ./includes/*.h

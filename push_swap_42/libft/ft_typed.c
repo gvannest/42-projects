@@ -72,6 +72,7 @@ int				ft_type_di(t_lst *p, va_list ap)
 		ft_buffer('+', p);
 	if (n < 0 && (!(FLAGS & ZERO) || PRECISION_ON))
 		ft_buffer('-', p);
+    (PRECISION_ON && n == 0 && PRECISION == 0 && itoa) ? ft_strdel(&itoa) : 1;
 	if (PRECISION_ON && n == 0 && PRECISION == 0)
 		return (0);
 	ft_precision(p, itoa, len);
@@ -80,6 +81,6 @@ int				ft_type_di(t_lst *p, va_list ap)
 		ft_buffer(itoa[i++], p);
 	if (FLAGS & MINUS)
 		ft_width(p, len, n);
-	(itoa && n != 0 ? ft_strdel(&itoa) : 1);
+	(itoa ? ft_strdel(&itoa) : 1);
 	return (0);
 }

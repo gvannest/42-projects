@@ -24,6 +24,7 @@ static void	ft_stackdel(t_stack *stack_a_start)
         list2 = list1;
         list1 = list1->next;
         free(list2);
+        list2 = 0;
     }
     stack_a_start = 0;
 }

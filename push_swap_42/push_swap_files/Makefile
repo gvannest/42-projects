@@ -96,10 +96,7 @@ default:
 	@make $(DEFRULE)
 
 .PHONY: all
-all: libftcomp $(OBJ_PATH) $(NAME) Makefile
-
-libftcomp:
-	@make all -C $(LIBFT_PATH)
+all: $(OBJ_PATH) $(NAME) Makefile
 
 $(NAME): $(OBJ) $(OBJ_CH)
 	@echo -e "--$(LOG_CLEAR)$(LOG_MAGENTA)$(NAME)$(LOG_NOCOLOR)....................... $(LOG_ORANGE)assembling$(LOG_NOCOLOR)$(LOG_UP)"
@@ -124,21 +121,11 @@ clean:
 	@echo -e "$(LOG_CLEAR)$(LOG_BLUE)clean $(NAME)$(LOG_NOCOLOR)"
 	@echo -e "--$(LOG_CLEAR)$(LOG_YELLOW)Objects$(LOG_NOCOLOR) deleted.............. $(LOG_RED)×$(LOG_NOCOLOR)"
 	@rm -rf $(OBJ_PATH)
-	@echo -e "$(LOG_CLEAR)$(LOG_BLUE)clean libft$(LOG_NOCOLOR)"
-	@make clean -C $(LIBFT_PATH)
-	@echo -e "--$(LOG_CLEAR)$(LOG_YELLOW)Objects$(LOG_NOCOLOR) deleted.............. $(LOG_RED)×$(LOG_NOCOLOR)"
 
 .PHONY: fclean
 fclean: clean
-	@echo -e "$(LOG_CLEAR)$(LOG_BLUE)fclean libft$(LOG_NOCOLOR)"
-	@make fclean -C $(LIBFT_PATH)
 	@echo -e "$(LOG_CLEAR)$(LOG_BLUE)fclean $(NAME)$(LOG_NOCOLOR)"
 	@rm -f ../$(NAME)
-	@echo -e "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deleted............... $(LOG_RED)×$(LOG_NOCOLOR)"
 
 .PHONY: re
 re: fclean all
-
-norme:
-	norminette $(SRC)
-	norminette ./includes/*.h
