@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 19:25:48 by gvannest          #+#    #+#             */
-/*   Updated: 2019/05/31 19:25:55 by gvannest         ###   ########.fr       */
+/*   Updated: 2019/05/31 21:27:08 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ void			ft_apply_operations(t_stack **tab_stack, t_oper **oper,
 				char *ope);
 void			ft_sortmerge_stacka(t_stack **tab_stack, t_algo *algo,
 				t_oper **oper);
-void			ft_oper_toprint(t_oper *oper);
 void			ft_fixa(t_stack **tab_stack, t_algo *algo, t_oper **oper);
 void			ft_clear_operations(t_oper *oper);
+void			ft_tools_workona(t_stack **tab_stack, t_algo *algo,
+				t_oper *oper, int *count);
+void			ft_tools_workonb(t_stack **tab_stack, t_algo *algo,
+				t_oper *oper, int *count);
 
 #endif
