@@ -6,24 +6,25 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 21:15:42 by gvannest          #+#    #+#             */
-/*   Updated: 2019/05/31 21:23:38 by gvannest         ###   ########.fr       */
+/*   Updated: 2019/06/01 12:03:03 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes_ps/push_swap.h"
 
-void	ft_tools_workona(t_stack **tab_stack, t_algo *algo, t_oper *oper,
-		int *count)
+int		ft_tools_workona(t_stack **tab_stack, t_algo *algo, t_oper **oper)
 {
-	int median;
+	int	median;
+	int	count;
 
+	count = 0;
 	median = algo->medians[algo->curr_median_idx];
 	while (ft_check_further(tab_stack, algo))
 	{
 		while (tab_stack[0]->nbr > median)
 		{
 			ft_apply_operations(tab_stack, oper, "ra");
-			*count++;
+			count++;
 		}
 		if (tab_stack[0]->nbr == median)
 		{
@@ -34,20 +35,22 @@ void	ft_tools_workona(t_stack **tab_stack, t_algo *algo, t_oper *oper,
 		else
 			ft_apply_operations(tab_stack, oper, "pb");
 	}
+	return (count);
 }
 
-void	ft_tools_workonb(t_stack **tab_stack, t_algo *algo, t_oper *oper,
-		int *count)
+int		ft_tools_workonb(t_stack **tab_stack, t_algo *algo, t_oper **oper)
 {
-	int median;
+	int	median;
+	int	count;
 
+	count = 0;
 	median = algo->medians[algo->curr_median_idx];
 	while (ft_check_further(tab_stack, algo))
 	{
 		while (tab_stack[2]->nbr < median)
 		{
 			ft_apply_operations(tab_stack, oper, "rb");
-			*count++;
+			count++;
 		}
 		if (tab_stack[2]->nbr == median)
 		{
@@ -58,4 +61,5 @@ void	ft_tools_workonb(t_stack **tab_stack, t_algo *algo, t_oper *oper,
 		else
 			ft_apply_operations(tab_stack, oper, "pa");
 	}
+	return (count);
 }

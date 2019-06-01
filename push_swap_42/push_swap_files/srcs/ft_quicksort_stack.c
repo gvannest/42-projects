@@ -6,13 +6,13 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/16 14:00:03 by gvannest          #+#    #+#             */
-/*   Updated: 2019/05/31 21:25:21 by gvannest         ###   ########.fr       */
+/*   Updated: 2019/06/01 12:03:56 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes_ps/push_swap.h"
 
-static int	ft_check_further(t_stack **tab_stack, t_algo *algo)
+int			ft_check_further(t_stack **tab_stack, t_algo *algo)
 {
 	t_stack	*stack;
 	int		count;
@@ -67,7 +67,7 @@ static void	ft_workona(t_stack **tab_stack, t_algo *algo, t_oper **oper)
 
 	count_ra = 0;
 	median = algo->medians[algo->curr_median_idx];
-	ft_tools_workona(tab_stack, algo, oper, &count_ra);
+	count_ra = ft_tools_workona(tab_stack, algo, oper);
 	if (tab_stack[3]->nbr == median)
 		ft_apply_operations(tab_stack, oper, "rrb");
 	else if (ft_stacklen(tab_stack[2], 0) > 1
@@ -90,7 +90,7 @@ static void	ft_workonb(t_stack **tab_stack, t_algo *algo, t_oper **oper)
 
 	count_rb = 0;
 	median = algo->medians[algo->curr_median_idx];
-	ft_tools_workonb(tab_stack, algo, oper, &count_rb);
+	count_rb = ft_tools_workonb(tab_stack, algo, oper);
 	if (tab_stack[1]->nbr == median)
 		ft_apply_operations(tab_stack, oper, "rra");
 	else if (ft_stacklen(tab_stack[0], 0) > 1

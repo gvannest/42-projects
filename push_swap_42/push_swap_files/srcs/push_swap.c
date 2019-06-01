@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/16 14:00:03 by gvannest          #+#    #+#             */
-/*   Updated: 2019/05/31 21:10:25 by gvannest         ###   ########.fr       */
+/*   Updated: 2019/06/01 12:28:34 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,19 @@ static t_stack	**ft_initialize_stacks(t_stack **tab_stack)
 	return (tab_stack);
 }
 
-static int		ft_reduce(t_oper *oper, t_oper *tmp, char *ope1, char *ope2)
+static int		ft_reduce(t_oper **oper, t_oper **tmp, char *ope1, char *ope2)
 {
-	if ((!ft_strcmp(oper->instruction, ope1)
-				&& !ft_strcmp(tmp->instruction, ope2))
-			|| (!ft_strcmp(oper->instruction, ope2)
-				&& !ft_strcmp(tmp->instruction, ope1)))
-		return (1);
+	if (*tmp)
+	{
+		if ((!ft_strcmp((*oper)->instruction, ope1)
+			&& !ft_strcmp((*tmp)->instruction, ope2))
+			|| (!ft_strcmp((*oper)->instruction, ope2)
+			&& !ft_strcmp((*tmp)->instruction, ope1)))
+		{
+			*oper = (*tmp)->next;
+			return (1);
+		}
+	}
 	return (0);
 }
 
@@ -59,20 +65,13 @@ static void		ft_oper_toprint(t_oper *oper)
 
 	while (oper)
 	{
-		tmp = (oper->next) ? oper->next : 0;
-		if (tmp)
-		{
-			if (ft_reduce(oper, tmp, "ra", "rb"))
-				ft_printf("%s\n", "rr");
-			else if (ft_reduce(oper, tmp, "rra", "rrb"))
-				ft_printf("%s\n", "rrr");
-			else if (ft_reduce(oper, tmp, "sa", "sb"))
-				ft_printf("%s\n", "ss");
-			else
-				oper = oper->next;
-			(oper != tmp) ? oper = tmp->next
-			: ft_printf("%s\n", oper->instruction);
-		}
+		tmp = oper->next;
+		if (ft_reduce(&oper, &tmp, "ra", "rb"))
+			ft_printf("%s\n", "rr");
+		else if (ft_reduce(&oper, &tmp, "rra", "rrb"))
+			ft_printf("%s\n", "rrr");
+		else if (ft_reduce(&oper, &tmp, "sa", "sb"))
+			ft_printf("%s\n", "ss");
 		else
 		{
 			ft_printf("%s\n", oper->instruction);

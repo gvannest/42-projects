@@ -6,7 +6,7 @@
 #    By: gvannest <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/03 14:13:27 by gvannest          #+#    #+#              #
-#    Updated: 2019/05/03 14:13:31 by gvannest         ###   ########.fr        #
+#    Updated: 2019/06/01 12:00:00 by gvannest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC_NAME = \
     ft_quicksort_stack.c \
     ft_sort_tab.c \
     ft_sortmerge.c \
+	ft_tools_algo.c
 
 SRC_NAME_CH = \
     ft_parse_checker.c \
