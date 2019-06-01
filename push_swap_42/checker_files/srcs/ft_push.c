@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 14:19:56 by gvannest          #+#    #+#             */
-/*   Updated: 2019/05/31 20:14:46 by gvannest         ###   ########.fr       */
+/*   Updated: 2019/06/01 12:56:33 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int		ft_push(t_stack **stack_from, t_stack **stack_to,
 {
 	t_stack	*tmp;
 
-	if (!stack_from || !(*stack_from))
+	if (!stack_from || !(*stack_from) || !ft_stacklen(*stack_from, 0))
 		return (0);
 	else
 	{

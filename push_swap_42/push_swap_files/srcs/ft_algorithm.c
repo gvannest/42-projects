@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/16 14:00:03 by gvannest          #+#    #+#             */
-/*   Updated: 2019/05/31 20:32:03 by gvannest         ###   ########.fr       */
+/*   Updated: 2019/06/01 13:32:18 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,44 @@ void		ft_apply_operations(t_stack **tab_stack, t_oper **oper, char *ope)
 	}
 }
 
+static void	ft_calc_minmax(int *min, int *max, t_stack **tab_stack)
+{
+	t_stack *tmp_stack;
+
+	*min = tab_stack[0]->nbr;
+	*max = tab_stack[0]->nbr;
+	tmp_stack = tab_stack[0];
+	while (tmp_stack)
+	{
+		if (tmp_stack->nbr < *min)
+			*min = tmp_stack->nbr;
+		if (tmp_stack->nbr > *max)
+			*max = tmp_stack->nbr;
+		tmp_stack = tmp_stack->next;
+	}
+}
+
+static void	ft_algo_short(t_stack **tab_stack, t_oper **oper)
+{
+	int min;
+	int max;
+
+	ft_calc_minmax(&min, &max, tab_stack);
+	while (!ft_is_sorted(tab_stack[0]))
+	{
+		if (tab_stack[0]->nbr == min)
+		{
+			ft_apply_operations(tab_stack, oper, "pb");
+			ft_apply_operations(tab_stack, oper, "sa");
+			ft_apply_operations(tab_stack, oper, "pa");
+		}
+		if (tab_stack[0]->nbr == max)
+			ft_apply_operations(tab_stack, oper, "ra");
+		if (tab_stack[0]->next->nbr < tab_stack[0]->nbr)
+			ft_apply_operations(tab_stack, oper, "sa");
+	}
+}
+
 void		ft_algorithm(t_stack **tab_stack, t_oper **oper)
 {
 	t_algo	algo;
@@ -67,7 +105,10 @@ void		ft_algorithm(t_stack **tab_stack, t_oper **oper)
 		exit(EXIT_FAILURE);
 	algo.curr_median_idx = -1;
 	algo.new_stacka_end = NULL;
-	ft_sorting_algo(tab_stack, &algo, oper);
+	if (len == 3)
+		ft_algo_short(tab_stack, oper);
+	else
+		ft_sorting_algo(tab_stack, &algo, oper);
 	free(algo.tab_sorted);
 	free(algo.medians);
 }

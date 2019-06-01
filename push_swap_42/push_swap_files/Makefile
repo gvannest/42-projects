@@ -6,7 +6,7 @@
 #    By: gvannest <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/03 14:13:27 by gvannest          #+#    #+#              #
-#    Updated: 2019/06/01 12:00:00 by gvannest         ###   ########.fr        #
+#    Updated: 2019/06/01 13:46:58 by gvannest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,10 @@ default:
 	@make $(DEFRULE)
 
 .PHONY: all
-all: $(OBJ_PATH) $(NAME) Makefile
+all: libftcomp $(OBJ_PATH) $(NAME) Makefile
+
+libftcomp:
+	@make all -C $(LIBFT_PATH)
 
 $(NAME): $(OBJ) $(OBJ_CH)
 	@echo -e "--$(LOG_CLEAR)$(LOG_MAGENTA)$(NAME)$(LOG_NOCOLOR)....................... $(LOG_ORANGE)assembling$(LOG_NOCOLOR)$(LOG_UP)"

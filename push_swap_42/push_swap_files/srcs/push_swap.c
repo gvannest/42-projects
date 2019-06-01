@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/16 14:00:03 by gvannest          #+#    #+#             */
-/*   Updated: 2019/06/01 12:28:34 by gvannest         ###   ########.fr       */
+/*   Updated: 2019/06/01 13:06:31 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,7 @@ int				main(int argc, char **argv)
 	oper = 0;
 	ft_initialize_stacks(tab_stack);
 	if (argc < 2)
-	{
-		ft_dprintf(2, "Error\n");
 		return (0);
-	}
 	ft_parse_stack(tab_stack, argc, argv);
 	ft_algorithm(tab_stack, &oper);
 	ft_oper_toprint(oper);
