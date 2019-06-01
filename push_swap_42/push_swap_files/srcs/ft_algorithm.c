@@ -6,7 +6,7 @@
 /*   By: gvannest <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/16 14:00:03 by gvannest          #+#    #+#             */
-/*   Updated: 2019/06/01 13:32:18 by gvannest         ###   ########.fr       */
+/*   Updated: 2019/06/01 17:18:23 by gvannest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ static void	ft_algo_short(t_stack **tab_stack, t_oper **oper)
 			ft_apply_operations(tab_stack, oper, "ra");
 		if (tab_stack[0]->next->nbr < tab_stack[0]->nbr)
 			ft_apply_operations(tab_stack, oper, "sa");
+		if (tab_stack[1]->nbr == min)
+			ft_apply_operations(tab_stack, oper, "rra");
 	}
 }
 
