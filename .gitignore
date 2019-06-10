@@ -1,0 +1,12 @@
+*.pyc
+__pycache__
+*env
+*.sql
+django_env
+db.*
+.*.swp
+.DS_*
+*.mmg
+migrations
+staticfiles
+.idea

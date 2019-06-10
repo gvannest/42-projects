@@ -6,7 +6,7 @@
 #    By: gvannest <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/03 14:13:27 by gvannest          #+#    #+#              #
-#    Updated: 2019/06/01 13:46:58 by gvannest         ###   ########.fr        #
+#    Updated: 2019/06/06 14:06:51 by gvannest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,11 +109,9 @@ $(NAME): $(OBJ) $(OBJ_CH)
 	@echo -e "--$(LOG_CLEAR)$(LOG_CYAN)$(NAME)$(LOG_NOCOLOR) compiled................. $(LOG_GREEN)✓$(LOG_NOCOLOR)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@echo -e "--$(LOG_CLEAR)$(LOG_MAGENTA)$(NAME)$(LOG_NOCOLOR)........................ $(LOG_YELLOW)$<$(LOG_NOCOLOR)$(LOG_UP)"
 	@$(CC) $(CFLAGS) $(CPPFLAGS) $(ADDFLAGS) -c -o $@ $<
 
 $(OBJ_PATH_CH)%.o: $(SRC_PATH_CH)%.c
-	@echo -e "--$(LOG_CLEAR)$(LOG_MAGENTA)$(NAME)$(LOG_NOCOLOR)........................ $(LOG_YELLOW)$<$(LOG_NOCOLOR)$(LOG_UP)"
 	@$(CC) $(CFLAGS) $(CPPFLAGS) $(ADDFLAGS) -c -o $@ $<
 
 $(OBJ_PATH):
